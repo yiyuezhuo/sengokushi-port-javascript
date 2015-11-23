@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Draggable - Default functionality</title>
+  <link rel="stylesheet" href="jquery/jquery-ui.css">
+  <script src="jquery/jquery.js"></script>
+  <script src="jquery/jquery-ui.js"></script>
+  <script src="datatables/datatables.min.js"></script>
+  <link rel="stylesheet" href="datatables/datatables.min.css">
+
+  <style>
+  	.line
+  	{z-index:2;}
+  	.zone
+  	{z-index:4;}
+  	.text
+  	{z-index:3;}
+  	body {overflow-x:hidden;overflow-y:hidden;}
+  	
+  </style>
+
+</head>
+<body>
+
+<!-- <div id="header" style="z-index:8888;background-color: rgb(50, 50, 200);position: absolute;">打飞机hello</div> -->
+<div id='map' class='oneShow mapBox' style="z-index:0"></div>
+
+<div id='showBox' class="oneShow showBox">
+	<table id="showTable" class="stripe hover"></table>
+	<div id="showBoxAid" >
+		<a id='showBoxButton1' href='javascript:click_box.ok()'>Done</a>
+		<a id='showBoxButton2' href='javascript:click_box.cancel()'>Cancel</a>
+		<div class="oneShow battle_check">
+			<a id='showBoxButton3' href='javascript:click_box.fight()'>fight!</a>
+			<a id='showBoxButton4' href="javascript:click_box.bliz()">bliz!</a>
+		</div>
+		<div class="oneShow caught_check">
+			<a id='insult' href='javascript:click_box.fight()'>insult!</a>
+			<a id='talk' href="javascript:click_box.bliz()">talk!</a>
+		</div>
+	</div>
+</div>
+
+<div id='battleBox' class='oneShow battleBox'>
+	<div id="battleFieldControl">
+		<p>回合1/20</p>
+		<input type=button value="前进">
+		<input type=button value="攻击">
+		<input type=button value="大炮轰击">
+		<input type=button value="先锋/次阵交替">
+		<input type=button value="待机">
+		<input type=button value="撤退">
+	</div>
+	<div id="battleFieldImage">
+		<p>法国周边的合战</p>
+		<div style="background:image/YasenSummer.jpg">
+			<div class="edgeBox A rear">
+				<p>本阵</p>
+				<div class="edgeArmy"></div>
+			</div>
+			<div class="edgeBox A center">
+				<p>次阵</p>
+				<div class="edgeArmy A"></div>
+			</div>
+			<div class="edgeBox A front">
+				<p>先锋</p>
+				<div class="edgeArmy"></div>
+			</div>
+			
+			<div class="edgeBox rear B">
+				<p>本阵</p>
+				<div class="edgeArmy"></div>
+			</div>
+			<div class="edgeBox rear B">
+				<p>次阵</p>
+				<div class="edgeArmy"></div>
+			</div>
+			<div class="edgeBox front B">
+				<p>先锋</p>
+				<div class="edgeArmy"></div>
+			</div>
+			
+		</div>
+	</div>
+	<p>法国总兵数</p>
+	<p>英国总兵数</p>
+	<div id="AsidePanel">
+		<table class='panelFront'></table>
+		<table class='panelCenter'></table>
+		<table class='panelRear'></table>
+	</div>
+	<div id="BsidePanel">
+		<table class='panelFront'></table>
+		<table class='panelCenter'></table>
+		<table class='panelRear'></table>
+	</div>
+</div>
+<div id="messageBox" class='oneShow messageBox'>
+	This the message box!you can get some message in this!
+	<a  href="javascript:click_box.message_back()">back!</a><br>
+	<a  href="javascript:click_box.message_caught()">caught state!</a><br>
+	<a  href="javascript:click_box.next_turn()">next turn</a>
+</div>
+<div id='battleHistoryBox' class="oneShow battleHistoryBox" style="width:600px; height:600px; overflow:auto; ">
+	<a id='historyBack' href='javascript:click_box.cancel()'>Cancel</a>
+	<pre></pre>
+</div>
+
+<!--
+<script src="shengyingbattle.js"></script>
+-->
+<<script src="setting.js"></script>
+
+<script src="MiniWorldWar2.js"></script>
+
+<script src="battleMin.js"></script>
+
+<script src="AI.js"></script>
+<script src="logic.js"></script>
+
+</body>
+</html>

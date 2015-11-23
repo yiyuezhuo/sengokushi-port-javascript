@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>New game</title>
+  <link rel="stylesheet" href="jquery/jquery-ui.css">
+  <script src="jquery/jquery.js"></script>
+  <script src="jquery/jquery-ui.js"></script>
+  <script src="datatables/datatables.min.js"></script>
+  <link rel="stylesheet" href="datatables/datatables.min.css">
+
+  <style>
+  	.line
+  	{z-index:2;}
+  	.zone
+  	{z-index:4;}
+  	.text
+  	{z-index:3;}
+  	
+  </style>
+
+</head>
+<body>
+
+<!-- <div id="header" style="z-index:8888;background-color: rgb(50, 50, 200);position: absolute;">打飞机hello</div> -->
+<div id='map' class='oneShow mapBox' style="z-index:0"></div>
+
+	<div id='assign' class='assign' style="z-index:10;position:absolute">
+		<p>
+			<label for="amount">number:</label>
+			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		</p>
+		<div id="slider-range"></div>
+		<a id="confirm">confirm</a>
+	</div>
+	<div id='choose' class='choose' style="z-index:10;position:absolute">
+		<a id='assign_a'>assign</a>
+	</div>
+	<div id='choose_e' class='choose_e' style="z-index:10;position:absolute">
+		<a id='battle_a'>fight!</a>
+		<a id='bliz_a'>bliz!</a>
+	</div>
+
+
+<div id="messageBox" class='oneShow messageBox'>
+	This the message box!you can get some message in this!
+	<a  href="javascript:click_box.message_back()">back!</a><br>
+	<a  href="javascript:click_box.message_caught()">caught state!</a><br>
+	<a  href="javascript:click_box.next_turn()">next turn</a>
+</div>
+
+
+<!--
+<script src="shengyingbattle.js"></script>
+-->
+
+
+<script src="MiniWorldWar2.js"></script>
+
+<script src="logic.js"></script>
+<script src="save3.js"></script>
+
+</body>
+</html>
