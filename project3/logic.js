@@ -193,6 +193,7 @@ function Weight_choose(){
 		console.log('activate');
 	}
 	var assign_a=$('#assign_a');
+	var transport_a=$('#transport_a');
 	var that=this;
 	this.assign_do=function(){
 		that.hidden();
@@ -200,6 +201,11 @@ function Weight_choose(){
 		weight_assign.activate(that.last_zone);
 	};
 	assign_a.on('click',this.assign_do);
+	this.transport_do=function(){
+		that.hidden();
+		click_box.state='transport';
+	}
+	transport_a.on('click',this.transport_do);
 }
 function Weight_choose_e(){
 	var that=this;
@@ -235,7 +241,7 @@ function Weight_choose_e(){
 		that.hidden();
 		var tl=[];
 		side_l.forEach(function(side){
-			if (that.last_zone.strengths[side.id]!==0){
+			if (that.last_zone.total_strength(side.id)!==0){
 				tl.push(side.id);
 			}
 		})
@@ -257,7 +263,7 @@ function Weight_assign(){
 	var that=this;
 	this.activate=function(zone){
 		this.last_zone=zone;
-		this.range=zone.strength();
+		this.range=zone.move_able();
 		$( "#slider-range" ).slider({
 			  range: "max",
 			  min: 0,
@@ -285,6 +291,26 @@ function Weight_assign(){
 	}
 	this.confirm.on('click',this.confirm_do);
 }
+function Toolbox(){
+	var next_turn_a=$('#next_turn_a');
+	next_turn_a.on('click',next_turn);
+	this.swicher=1;
+	var that=this;
+	/*
+	var moe_img=$('#moe');
+	this.img_change=function(){
+		if (that.swicher===1){
+			moe_img.attr('src','2.jpg');
+			that.swicher=2;
+		}
+		else{
+			moe_img.attr('src','1.jpg');
+			that.swicher=1;
+		}
+	}
+	moe_img.on('click',this.img_change);
+	*/
+}
 function Class_click_control(){
 	//控制器的各个函数是调用的入口，本身可以看成有限状态机的输入，（之前）状态由对象内部保持，还应保持一个前select属性。
 	//除了这个属性以外就应该以调用对应函数作为对应输入的逻辑实现成有限状态机。
@@ -295,7 +321,8 @@ function Class_click_control(){
 
 	this.click_zone=function (zone_el) {
 		//响应地区选择的入口函数，处理
-		var zone_id = Number(zone_el.id);
+		//var zone_id = Number(zone_el.id);
+		var zone_id=zone_el.id;
 		var zone = zone_d[zone_id];
 		var last_zone=this.select_history[this.select_history.length-1];
 
@@ -340,6 +367,10 @@ function Class_click_control(){
 				army_move(last_zone.id,zone.id,weight_assign.get_value(),last_zone.side);
 				this.state='start';
 				break;
+			case 'transport':
+				last_zone.trans_to=zone.id;//这里不输送没有特殊值标记，就是指向自己就表示不输送，这个之后逻辑处理
+				this.state='start';
+				break;
 		}
 		this.select_history.push(zone);
 		screen_update();
@@ -349,8 +380,8 @@ function Class_click_control(){
 function army_move(source_id,target_id,number,side){
 	var source=zone_d[source_id];
 	var target=zone_d[target_id];
-	source.strengths[side]-=number;
-	target.strengths[side]+=number;
+	source.strengths[side][1]-=number;
+	target.strengths[side][0]+=number;
 }
 function lancheste(M,N,a,b){
 	//a*(M^2-m(t)^2=b*(N^2)-n(t)^2)
@@ -375,7 +406,7 @@ function battle_cal(zone_id){
 		return;
 	}
 	side_l.forEach(function(side){
-		if (zone.strengths[side.id]!==0){
+		if (zone.total_strength(side.id)!==0){
 			sides.push(side.id);
 		}
 	});
@@ -383,11 +414,13 @@ function battle_cal(zone_id){
 	defender=zone.side;
 	attacker=other(sides,defender);
 	var atk_s,def_s;
-	atk_s=zone.strengths[attacker];
-	def_s=zone.strengths[defender];
+	atk_s=zone.total_strength(attacker);
+	def_s=zone.total_strength(defender);
 	var r=lancheste(atk_s,def_s,1,1);
-	zone.strengths[attacker]=int(r[0]);
-	zone.strengths[defender]=int(r[1]);
+	zone.strengths[attacker][0]=int(r[0]);
+	zone.strengths[defender][0]=int(r[1]);
+	zone.strengths[attacker][1]=0;
+	zone.strengths[defender][1]=0;
 	if (r[0]>0){
 		zone.side=attacker;
 	}
@@ -399,7 +432,7 @@ function occupy(zone_id){
 		var zone=zone_d[zone_id];
 		var tl=[];
 		side_l.forEach(function(side){
-			if (zone.strengths[side.id]!==0){
+			if (zone.total_strength(side.id)!==0){
 				tl.push(side.id);
 			}
 		})
@@ -408,51 +441,18 @@ function occupy(zone_id){
 		screen_update();
 }
 
-function AI(side_id){
-	zone_l.forEach(function(zone){
-		if(zone.side===side_id && !zone.fighted)
-		{
-			var el=[];//敌方区域
-			var fl=[];//右方区域
-			var al=[];//可攻击区域
-			zone.nei.forEach(function(nei_id){
-				var nei=zone_d[nei_id];
-				if ((nei.side)===side_id){
-					fl.push(nei);
-				}
-				else{
-					el.push(nei);
-					if (nei.strength()<zone.strength()){
-						al.push(nei);
-					}
-				}
-			});
-			if (al.length===0 && fl.length!==0){
-				var target=random.choose(fl)//zone_d[random.choose(fl)];
-				army_move(zone.id,target.id,zone.strength(),zone.side);
-			}
-			else if(al.length!==0){
-				var target=random.choose(al)//zone_d[random.choose(al)];
-				army_move(zone.id,target.id,zone.strength(),zone.side);
-				battle_cal(target.id);
-			}
-			else if (al.length===0 && fl.length===0){
-				console.log('I am hard to do anything!');
-			}
-		}
-	})
-}
-function AI_run(){
-	side_l.forEach(function(side){
-		if (!(isFriend(side.id))){
-			AI(side.id);
-		}
-	});
-}
+
 function nature_update(){
 	zone_l.forEach(function(zone){
 		zone.fighted=false;
-		zone.strengths[zone.side]+=1;
+		zone.strengths[zone.side][1]+=1;
+		zone.strengths[zone.side][1]+=zone.strengths[zone.side][0];
+		zone.strengths[zone.side][0]=0;
+	})
+	zone_l.forEach(function(zone){
+		if (zone.trans_to!==zone.id && side_d[zone.side].is_friendly(zone.trans_to)){
+			army_move(zone.id,zone.trans_to,zone.move_able(),zone.side);
+		}
 	})
 }
 function next_turn(){
@@ -463,7 +463,7 @@ function is_conflict(zone_id){
 	var zone=zone_d[zone_id];
 	var al=[];
 	side_l.forEach(function(side){
-		if(zone.strengths[side.id]!==0){
+		if(zone.total_strength(side.id)!==0){
 			al.push(side.id);
 		}
 	})
@@ -478,7 +478,7 @@ function is_bliz(zone_id){
 	var zone=zone_d[zone_id];
 	var al=[];
 	side_l.forEach(function(side){
-		if(zone.strengths[side.id]!==0){
+		if(zone.total_strength(side.id)!==0){
 			al.push(side.id);
 		}
 	})
@@ -497,10 +497,13 @@ function zone_color_reshresh(){
 		var zone = zone_l[i];
 		var zone_el = zone.element;
 		if (isFriend((zone.side))) {
-			zone_el.css({"background-color": "rgb(50,200,50)"});
+			zone_el.css({"background-color": "rgb(100,100,200)"});
+		}
+		else if(side_d[player_side].is_friendly(zone.id)){
+			zone_el.css({"background-color": "rgb(100,200,100)"});
 		}
 		else {
-			zone_el.css({"background-color": "rgb(200,50,50)"});
+			zone_el.css({"background-color": "rgb(200,100,100)"});
 		}
 	}
 }
@@ -525,6 +528,7 @@ function screen_update(){
 }
 function isFriend(side_id){
 	return member(side_id,player_side_list) || side_id === player_side;
+	//return side_d[player_side].diplomacy[side_id]!==0;
 }
 
 
@@ -534,6 +538,7 @@ click_box=new Class_click_control();
 weight_choose=new Weight_choose();
 weight_assign=new Weight_assign();
 weight_choose_e=new Weight_choose_e();
+toolbox=new Toolbox();
 
 
 
@@ -568,14 +573,15 @@ map_percent_y=0.05;
 //圆周率常数
 pi=Math.PI;
 
-player_side=8;
-player_side_list=[8];
+//player_side='0005';
+player_side=side_l[5].id;
+//player_side_list=['0005'];
+player_side_list=[player_side];
 
 zone_el_d={};
 //画区域同时加强定义
 for (var i=0;i<zone_l.length;i++){
 	var zone=zone_l[i];
-
 	var els=draw_zone_snr(map_el,zone);
 	var zone_e=els[0];
 	var text1=els[1];
@@ -588,11 +594,22 @@ for (var i=0;i<zone_l.length;i++){
 	//zone.leader=[];
 	zone.strengths={};
 	side_l.forEach(function(side){
-		zone.strengths[side.id]=0;
+		//zone.strengths[side.id]=0;
+		zone.strengths[side.id]={0:0,1:0};//即有1移动力和有0移动力的单位数量的区别映射
 	})
-	zone.strengths[side_d[zone.side].id]=int(random.random()*10);
-	zone.strength=function(){
-		return this.strengths[this.side];
+	zone.strengths[side_d[zone.side].id][1]=int(random.random()*10);
+	zone.move_able=function(){//strength现在逻辑改为可战斗单位数量
+		return this.strengths[this.side][1];
+	};
+	zone.total_strength=function(side_id){
+		var s=0;
+		for (var i in this.strengths[side_id]){
+			s+=this.strengths[side_id][i];
+		}
+		return s;
+	}
+	zone.strength=function(){//strength现在逻辑改为可战斗单位数量
+		return this.total_strength(this.side);
 	};
 	zone.nei=[];//虽然有个link属性但那货不好用
 	zone_el_d[zone.id]=zone_e;
@@ -600,6 +617,7 @@ for (var i=0;i<zone_l.length;i++){
 	//zone_e.click(click_box.click_zone);
 	zone_e.attr({'id':zone.id});
 	zone.fighted=false;
+	zone.trans_to=zone.id;//默认不输送
 }
 //画线,注意CSS里的旋转是绕中心旋转,还对zone增加其nei属性
 for (var i=0;i<link_l.length;i++){
@@ -617,6 +635,17 @@ for (var i=0;i<link_l.length;i++){
 	in_zone.nei.push(link.out);
 	out_zone.nei.push(link.in);
 
+}
+for (var i=0;i<side_l.length;i++){
+	var side=side_l[i];
+	side.diplomacy={};
+	for (var j=0;j<side_l.length;j++){
+		side.diplomacy[side_l[j].id]=0;//0表示敌对，1表示友好，2表示是自己
+		side.diplomacy[side.id]=2;
+	}
+	side.is_friendly=function(zone_id){//这个是判定区域友好与否的方法
+		return this.diplomacy[zone_d[zone_id].side] !==0 ;
+	}
 }
 
 zone_color_reshresh();
