@@ -135,8 +135,9 @@ function global_think(){
 }
 
 function AI_run2(){
-	var think= global_think();
+	//var think= global_think();
 	side_l.forEach(function(side){
+		var think= global_think();//本来那是个全局运算，但发现如果那样会有信息过时问题，结果为这个全局算又有性能损失，伤不起
 		if (!(isFriend(side.id))){
 			AI2(side.id,think);
 		}
@@ -163,6 +164,38 @@ function AI2(side_id,think){
 	//降势运动，另外进攻除了要使得自己strength高于对方，还要剩下的strength要足够抗击威胁，为此应当利用虚拟战斗。
 	//符合这些要求的才会成为进攻可行区域，如果没有进攻可行区域计算自己所在区域的威胁，若低于己方，则暂时只是不移动，
 	//不实现分兵。如果高于自己则向升势方向移动，若有等势者则随机选择一栋移动。
+	
+	var inner_l=[];//inner的先移动，缓解一下分区移动的弊病，本来就是整体规划复杂度的东西果然还是不能分区
+	var outer_l=[];
+	side_map[side.id]['have'].forEach(function(zone_id){
+		var zone=zone_d[zone_id];
+		if (zone_map[zone.id]['is_border']){
+			outer_l.push(zone_id);
+		}
+		else{
+			inner_l.push(zone_id);
+		}
+	});
+	inner_l.forEach(function(zone_id){
+		//非边界情况
+		var zone=zone_d[zone_id];
+		inner_move(side,zone,zone_map,threat_map);
+	});
+	outer_l.forEach(function(zone_id){
+			var zone=zone_d[zone_id];
+			//边界情况
+			//先检查是否需要撤退。不需要撤退的话，计算出能投入进攻的兵力与若投入这个兵力进攻若成功剩下的兵力
+			//是否还能抵抗threat，若通过才考虑发动进攻。
+			if (threat_map[zone.id]>zone.strength()){
+				//需要撤退
+				route_move(side,zone,zone_map,threat_map);
+			}
+			else{
+				//不需要撤退
+				front_move(side,zone,zone_map,threat_map);
+			}
+	});
+	/*
 	side_map[side.id]['have'].forEach(function(zone_id){
 		var target_id;
 		var zone=zone_d[zone_id];
@@ -172,6 +205,37 @@ function AI2(side_id,think){
 			//是否还能抵抗threat，若通过才考虑发动进攻。
 			if (threat_map[zone.id]>zone.strength()){
 				//需要撤退
+				route_move(side,zone,zone_map,threat_map);
+			}
+			else{
+				//不需要撤退
+				front_move(side,zone,zone_map,threat_map);
+			}
+		}
+		else{
+			//非边界情况
+			inner_move(side,zone,zone_map,threat_map);
+		}
+	})
+	*/
+}
+function inner_move(side,zone,zone_map,threat_map){
+			//非边界情况
+			var target_id;
+			var al=zone.nei.filter(function(nei_id){return threat_map[nei_id]<=zone_d[nei_id].strength()+zone.move_able()});
+			var potential_min=min(al.map(function(nei_id){return zone_map[nei_id]['potential']}));
+			var bl=al.filter(function(nei_id){return zone_map[nei_id]['potential']===potential_min});
+			if (bl.length!==0){
+				target_id=random.choose(bl);
+				army_move(zone.id,target_id,zone.move_able(),zone.side);
+			}
+			else{
+				console.log('I am hard to breath!');
+			}
+}
+function route_move(side,zone,zone_map,threat_map){
+				var target_id;
+				var side_id=side.id;
 				var al=zone.nei.filter(function(nei_id){return zone_d[nei_id].side===side_id});
 				var potential_max=max(al.map(function(nei_id){return zone_map[nei_id]['potential']}));
 				var bl=al.filter(function(nei_id){return zone_map[nei_id]['potential']===potential_max});
@@ -182,23 +246,23 @@ function AI2(side_id,think){
 				else{
 					console.log('I can not do anything!');
 				}
-			}
-			else{
-				//不需要撤退
-				//var ready=zone.strength()-threat_map[zone.id]; //move_able()
+}
+function front_move(side,zone,zone_map,threat_map){
+				var target_id;
 				var ready=zone.move_able()-threat_map[zone.id];
 				var al=zone.nei.filter(function(nei_id){
 					var nei=zone_d[nei_id];
 					if (ready<=0){
 						return false
 					}
-					else if (nei.side===side_id){
+					//else if (nei.side===side_id){
+					else if (side.is_friendly(nei.id)){
 						return false;
 					}
 					else if (ready<nei.strength()){
 						return false;
 					}
-					else if (int(lancheste(ready,nei.strength()[0]))<threat_map[nei_id]){
+					else if (int(lancheste(ready,nei.strength(),1,1)[0])<threat_map[nei_id]){
 						return false;
 					}
 					else{
@@ -215,21 +279,4 @@ function AI2(side_id,think){
 					//无力进攻,暂时设定为不做任何事,保持对峙
 					console.log('I do not want to do anything!');
 				}
-			}
-			
-		}
-		else{
-			//非边界情况
-			var al=zone.nei.filter(function(nei_id){return threat_map[nei_id]<=zone_d[nei_id].strength()+zone.move_able()});
-			var potential_min=min(al.map(function(nei_id){return zone_map[nei_id]['potential']}));
-			var bl=al.filter(function(nei_id){return zone_map[nei_id]['potential']===potential_min});
-			if (bl.length!==0){
-				target_id=random.choose(bl);
-				army_move(zone.id,target_id,zone.move_able(),zone.side);
-			}
-			else{
-				console.log('I am hard to breath!');
-			}
-		}
-	})
 }

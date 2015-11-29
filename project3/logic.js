@@ -591,7 +591,8 @@ function nature_update(){
 		zone.strengths[zone.side][0]=0;
 	})
 	zone_l.forEach(function(zone){
-		if (zone.trans_to!==zone.id && side_d[zone.side].is_friendly(zone.trans_to)){
+		if (zone.trans_to!==zone.id && side_d[zone.side].is_friendly(zone.trans_to) 
+			&& side_d[player_side].is_friendly(zone.id)){
 			army_move(zone.id,zone.trans_to,zone.move_able(),zone.side);
 		}
 	})
@@ -600,6 +601,7 @@ function next_turn(){
 	nature_update();
 	//AI_run();
 	AI_run2();
+	screen_update();
 }
 function is_conflict(zone_id){
 	var zone=zone_d[zone_id];
@@ -716,7 +718,7 @@ map_percent_y=0.05;
 pi=Math.PI;
 
 //player_side='0005';
-player_side=side_l[5].id;
+player_side=side_l[0].id;
 //player_side_list=['0005'];
 player_side_list=[player_side];
 
