@@ -20,6 +20,38 @@ random=(function(){
 	return module;
 })()
 
+function max(l,key){
+	//javascript是不是精神错乱了还要这样写
+	if (key===undefined){
+		return Math.max.apply(Math,l);
+	}
+	else{
+		return Math.max.apply(Math,l.map(key));
+	}
+}
+function min(l,key){
+	//javascript是不是精神错乱了还要这样写
+	if (key===undefined){
+		return Math.min.apply(Math,l);
+	}
+	else{
+		return Math.min.apply(Math,l.map(key));
+	}
+}
+function zip(){
+	var head_list=arguments[0];
+	var rl=[];
+	for (var i=0;i<head_list.length;i++){
+		rrl=[];
+		for (var j=0;j<arguments.length;j++){
+			var sub_list=arguments[j];
+			rrl.push(sub_list[i]);
+		}
+		rl.push(rrl);
+	}
+	return rl;
+}
+
 function member(atom,list){
     for(var i=0;i<list.length;i++){
         if (atom===list[i]){
@@ -74,6 +106,46 @@ function copy(l){
 	}
 	return rl;
 }
+function not(b){
+	return !b;
+}
+function all(l){
+	return l.reduce(function(a,b){return a&&b});
+}
+function set(l){
+	var s=[];
+	l.forEach(function(x){
+		if (not(member(x,s))){
+			s.push(x);
+		}
+	})
+	return s;
+}
+/*
+function downloadFile(aLink, fileName, content){
+		aLink.download = fileName;
+		aLink.href = "data:text/plain," + content;
+}*/
+function downloadFile(fileName, content){
+	//copy from http://www.jb51.net/article/47723.htm
+    var aLink = document.createElement('a');
+    var blob = new Blob([content]);
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+    aLink.download = fileName;
+    aLink.href = URL.createObjectURL(blob);
+    aLink.dispatchEvent(evt);
+}
+function downloadFileLink(aLink,fileName,content){
+    //var aLink = document.createElement('a');
+    var blob = new Blob([content]);
+    //var evt = document.createEvent("HTMLEvents");
+    //evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+    aLink.download = fileName;//虽然这个但主要还是应该另存为
+    aLink.href = URL.createObjectURL(blob);
+    //aLink.dispatchEvent(evt);
+}
+
 
 function draw_line(map_el,x1,y1,x2,y2){
 				//console.log(x1,y1,x2,y2);
@@ -293,9 +365,16 @@ function Weight_assign(){
 }
 function Toolbox(){
 	var next_turn_a=$('#next_turn_a');
+	var save_load_a=$('#save_load_a');
+	var save_load_div=$('#save_load_div');
+	var save_a=$('#save_a');
+	var load_input=$('#load_input');
+	var load_a=$('#load_a');
+	var fold_a=$('#fold_a');
+	var tend_a=$('#tend_a');
 	next_turn_a.on('click',next_turn);
-	this.swicher=1;
 	var that=this;
+	//this.swicher=1;
 	/*
 	var moe_img=$('#moe');
 	this.img_change=function(){
@@ -310,6 +389,68 @@ function Toolbox(){
 	}
 	moe_img.on('click',this.img_change);
 	*/
+	function save_obj(){
+		//目前看来变了的只有zone的一些属性，strengths以及side,基本上可以在载入源文件后再读入此文件完成加载
+		var modify={};
+		zone_l.forEach(function(zone){
+			modify[zone.id]={};
+			modify[zone.id].strengths=zone.strengths;
+			modify[zone.id].id=zone.id;
+			modify[zone.id].side=zone.side;
+		})
+		return modify;
+	}
+	function save_activate(){
+		var obj=save_obj()
+		downloadFileLink(save_a[0],'auto_save.json',JSON.stringify(obj));
+	}
+	function load_obj(modify){
+		zone_l.forEach(function(zone){
+			//modify[zone.id]={};
+			zone_d[zone.id].strengths=modify[zone.id].strengths;
+			//zone_d[zone.id].id=zone.id;
+			zone_d[zone.id].side=modify[zone.id].side;
+		})
+		screen_update();
+	}
+	/*
+	load_input.on('change',function(){
+			var source=this;
+			var file = source.files[0];
+			if(window.FileReader) {
+				var fr = new FileReader();
+				fr.onloadend = function(e) {
+					//document.getElementById("portrait").src = e.target.result;
+					load_obj(JSON.parse(e.target.result));
+				};
+				//fr.readAsDataURL(file);
+				fr.readAsText(file)
+			}
+	});*/
+	load_a.on('click',function(){
+			var source=load_input[0];//var source=load_input;
+			var file = source.files[0];
+			if(window.FileReader) {
+				var fr = new FileReader();
+				fr.onloadend = function(e) {
+					//document.getElementById("portrait").src = e.target.result;
+					load_obj(JSON.parse(e.target.result));
+				};
+				//fr.readAsDataURL(file);
+				fr.readAsText(file)
+			}
+	})
+	save_load_div.hide();
+	save_load_a.on('click',function(){
+		save_load_div.show();
+		save_load_a.hide();
+		save_activate();
+	});
+	fold_a.on('click',function(){
+		save_load_div.hide();
+		save_load_a.show();
+	});
+	//save_load_a.on('click',save_activate);
 }
 function Class_click_control(){
 	//控制器的各个函数是调用的入口，本身可以看成有限状态机的输入，（之前）状态由对象内部保持，还应保持一个前select属性。
@@ -457,7 +598,8 @@ function nature_update(){
 }
 function next_turn(){
 	nature_update();
-	AI_run();
+	//AI_run();
+	AI_run2();
 }
 function is_conflict(zone_id){
 	var zone=zone_d[zone_id];
