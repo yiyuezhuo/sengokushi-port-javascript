@@ -1,6 +1,9 @@
 # sengokushi-port-javascript
 Sengokushi(戦国史) is a great Historical Simulation Game in PC.This is project port it to javascript.
 
+在线游戏（GItHub page,由于不明原因可能要很长时间才有反应，之前会显示不能显示页面）
+http://yiyuezhuo.github.io 
+
 这个项目视图将战国史移植到javascript上去，战国史有着众所周知的“简洁”以及众多信息量很大的剧本，这个项目最初是想
 把战国史的剧本移植到民国无双上（都是点对点驱动，很相近），不过没人关注，snr_parser.py就是转换成民国无双信息的脚本，
 现在那个转民国无双部分删除了，增加了转成JSON/javascript的功能后整合进这个项目。
