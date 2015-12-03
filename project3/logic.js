@@ -1,4 +1,3 @@
-pi=3.1415926;
 function int(n){
 	var m=Number(n);
 	if (m%1===0){
@@ -21,22 +20,34 @@ random=(function(){
 })()
 
 function max(l,key){
-	//javascript是不是精神错乱了还要这样写
-	if (key===undefined){
-		return Math.max.apply(Math,l);
+	if (key!=undefined){
+		var ll=l.map(key);
 	}
 	else{
-		return Math.max.apply(Math,l.map(key));
+		var ll=l;
 	}
+	var maxv=ll[0];
+	ll.forEach(function(value){
+		if (value>maxv){
+			maxv=value;
+		}
+	})
+	return maxv;
 }
 function min(l,key){
-	//javascript是不是精神错乱了还要这样写
-	if (key===undefined){
-		return Math.min.apply(Math,l);
+	if (key!=undefined){
+		var ll=l.map(key);
 	}
 	else{
-		return Math.min.apply(Math,l.map(key));
+		var ll=l;
 	}
+	var minv=ll[0];
+	ll.forEach(function(value){
+		if (value<minv){
+			minv=value;
+		}
+	})
+	return minv;
 }
 function zip(){
 	var head_list=arguments[0];
@@ -121,11 +132,7 @@ function set(l){
 	})
 	return s;
 }
-/*
-function downloadFile(aLink, fileName, content){
-		aLink.download = fileName;
-		aLink.href = "data:text/plain," + content;
-}*/
+
 function downloadFile(fileName, content){
 	//copy from http://www.jb51.net/article/47723.htm
     var aLink = document.createElement('a');
@@ -148,32 +155,33 @@ function downloadFileLink(aLink,fileName,content){
 
 
 function draw_line(map_el,x1,y1,x2,y2){
-				//console.log(x1,y1,x2,y2);
-  			var dx=x2-x1;
-  			var dy=y2-y1;
-  			var dd=Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
-  			var cos_n=dx/dd;
-  			var sin_n=dy/dd;
-  			if (dy>0){
-  					var cos_c=Math.acos(cos_n);
-  					var sin_c=Math.asin(sin_n);
-  		  }
-  		  else{
-   					var cos_c=pi+pi-Math.acos(cos_n);
-  					var sin_c=pi+pi-Math.asin(sin_n)+pi;
-  		  }
-  			var cos_d=cos_c/(2*pi)*360;
-  			var sin_d=sin_c/(2*pi)*360;
-  			var degree=cos_d;
-  			//console.log(degree);
-  			var x3=(x1+x2)/2-dd/2;
-  			var y3=(y1+y2)/2;
-  			var line=$("<div class='line' style='left: "+(x3)+"px; top: "+(y3)+"px;'></div>");
-  			line.css({width:dd,height:5,position:"absolute",transform:"rotate("+degree+"deg)","background-color":"rgb(150,200,150)"});
-  			map_el.append(line);
-  			//Crafty的旋转是从出发点旋转的，CSS的是从中心旋转的，都用的角度
+		//console.log(x1,y1,x2,y2);
+		var dx=x2-x1;
+		var dy=y2-y1;
+		var dd=Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
+		var cos_n=dx/dd;
+		var sin_n=dy/dd;
+		var pi=Math.PI;
+		if (dy>0){
+			var cos_c=Math.acos(cos_n);
+			var sin_c=Math.asin(sin_n);
+		}
+		else{
+			var cos_c=pi+pi-Math.acos(cos_n);
+			var sin_c=pi+pi-Math.asin(sin_n)+pi;
+		}
+		var cos_d=cos_c/(2*pi)*360;
+		var sin_d=sin_c/(2*pi)*360;
+		var degree=cos_d;
+		//console.log(degree);
+		var x3=(x1+x2)/2-dd/2;
+		var y3=(y1+y2)/2;
+		var line=$("<div class='line' style='left: "+(x3)+"px; top: "+(y3)+"px;'></div>");
+		line.css({width:dd,height:5,position:"absolute",transform:"rotate("+degree+"deg)","background-color":"rgb(150,200,150)"});
+		map_el.append(line);
+		//Crafty的旋转是从出发点旋转的，CSS的是从中心旋转的，都用的角度
 
-  			return line;
+		return line;
 }
 
 function draw_zone(map_el,x,y,w,h){
@@ -189,8 +197,8 @@ function draw_text(map_el,x,y,w,h,s){
 		return cell
 }
 function draw_zone_snr(map_el,zone){
-		var x=zone.x*map_percent_x;
-		var y=zone.y*map_percent_y;
+		var x=zone.x*map_percent_x+x_transform;
+		var y=zone.y*map_percent_y+y_transform;
 		var w=cellW;
 		var h=cellH;
 	    var zone_el = draw_zone(map_el, x, y, w, h);
@@ -212,6 +220,14 @@ function boxShift(show_class,sub_class){
 		$('.oneShow').hide();
 		$('.'+show_class).show();
 		$('.'+sub_class).show();//除了主box的显示外，主box下还可以按照这些方法进行显示
+}
+function focus_player(){
+	zone_l.forEach(function(zone){
+		if (isFriend(zone.side)){
+			scrollTo(zone.x_el-200,zone.y_el-200);
+			return;
+		}
+	})
 }
 
 //地区点击事件测试版
@@ -246,6 +262,9 @@ function Weight(){
 	this.hidden=function(){
 		this.state='hidden';
 		this.element.hide();
+	}
+	this.hide=function(){
+		this.hidden();
 	}
 	this.turn=function(){
 		if (this.state=='hidden'){
@@ -363,6 +382,34 @@ function Weight_assign(){
 	}
 	this.confirm.on('click',this.confirm_do);
 }
+function Weight_side_chooser(){
+	this.element=$('#side_chooser');
+	Weight.call(this);
+	var el=this.element;
+	var that=this;
+	var activated=false;
+	this.activate=function(){
+		if (!(activated)){
+			side_l.forEach(function(side){
+				//var el_a=el.append('<a>'+side.name+'</a>');
+				var el_a=$('<a>'+side.name+'</a>').appendTo(el);
+				//console.log(el_a);
+				el.append('<br>');
+				el_a.on('click',function(side){
+					return function(){
+							//console.log('side');
+							//console.log(side);
+							player_side=side.id;
+							player_side_list=[player_side];
+							screen_update();
+							that.element.hide();};
+				}(side));
+			});
+			activated=true;
+		}
+	}
+	//el.append('')
+}
 function Toolbox(){
 	var next_turn_a=$('#next_turn_a');
 	var save_load_a=$('#save_load_a');
@@ -372,23 +419,20 @@ function Toolbox(){
 	var load_a=$('#load_a');
 	var fold_a=$('#fold_a');
 	var tend_a=$('#tend_a');
+	var tend_fold_a=$('#tend_fold_a');
+	var tend_div=$('#tend_div');
+	var change_side_a=$('#change_side_a');
+	var resize_a=$('#resize_a');
+	var scenario_chooser_div=$('#scenario_chooser_div');
+	var scenario_chooser_a=$('scenario_chooser_a');
+	var focus_a=$('#focus_a');
 	next_turn_a.on('click',next_turn);
 	var that=this;
-	//this.swicher=1;
-	/*
-	var moe_img=$('#moe');
-	this.img_change=function(){
-		if (that.swicher===1){
-			moe_img.attr('src','2.jpg');
-			that.swicher=2;
-		}
-		else{
-			moe_img.attr('src','1.jpg');
-			that.swicher=1;
-		}
-	}
-	moe_img.on('click',this.img_change);
-	*/
+	tend_div.hide();
+	change_side_a.on('click',function(){
+		side_chooser.activate();
+		side_chooser.show();
+	})
 	function save_obj(){
 		//目前看来变了的只有zone的一些属性，strengths以及side,基本上可以在载入源文件后再读入此文件完成加载
 		var modify={};
@@ -397,6 +441,7 @@ function Toolbox(){
 			modify[zone.id].strengths=zone.strengths;
 			modify[zone.id].id=zone.id;
 			modify[zone.id].side=zone.side;
+			modify[zone.id].trans_to=zone.trans_to;
 		})
 		return modify;
 	}
@@ -410,23 +455,18 @@ function Toolbox(){
 			zone_d[zone.id].strengths=modify[zone.id].strengths;
 			//zone_d[zone.id].id=zone.id;
 			zone_d[zone.id].side=modify[zone.id].side;
+			zone_d[zone.id].trans_to=modify[zone.id].trans_to;
 		})
 		screen_update();
 	}
-	/*
-	load_input.on('change',function(){
-			var source=this;
-			var file = source.files[0];
-			if(window.FileReader) {
-				var fr = new FileReader();
-				fr.onloadend = function(e) {
-					//document.getElementById("portrait").src = e.target.result;
-					load_obj(JSON.parse(e.target.result));
-				};
-				//fr.readAsDataURL(file);
-				fr.readAsText(file)
-			}
-	});*/
+	tend_a.on('click',function(){
+		tend_div.show();
+		tend_a.hide();
+	})
+	tend_fold_a.on('click',function(){
+		tend_div.hide();
+		tend_a.show();
+	})
 	load_a.on('click',function(){
 			var source=load_input[0];//var source=load_input;
 			var file = source.files[0];
@@ -450,7 +490,20 @@ function Toolbox(){
 		save_load_div.hide();
 		save_load_a.show();
 	});
+	resize_a.on('click',function(){
+		auto_resize();
+		UI_init();
+	})
 	//save_load_a.on('click',save_activate);
+	scenario_chooser_div.hide();
+	focus_a.on('click',function(){
+		zone_l.forEach(function(zone){
+			if (isFriend(zone.side)){
+				scrollTo(zone.x_el-200,zone.y_el-200);
+				return;
+			}
+		})
+	})
 }
 function Class_click_control(){
 	//控制器的各个函数是调用的入口，本身可以看成有限状态机的输入，（之前）状态由对象内部保持，还应保持一个前select属性。
@@ -518,11 +571,11 @@ function Class_click_control(){
 	};
 }
 
-function army_move(source_id,target_id,number,side){
+function army_move(source_id,target_id,num,side){
 	var source=zone_d[source_id];
 	var target=zone_d[target_id];
-	source.strengths[side][1]-=number;
-	target.strengths[side][0]+=number;
+	source.strengths[side][1]-=num;
+	target.strengths[side][0]+=num;
 }
 function lancheste(M,N,a,b){
 	//a*(M^2-m(t)^2=b*(N^2)-n(t)^2)
@@ -652,6 +705,7 @@ function zone_color_reshresh(){
 	}
 }
 function zone_number_refresh(){
+	/*
 	for(var i=0;i<zone_l.length;i++){
 		var zone=zone_l[i];
 		//var zone_id=zone.id;
@@ -659,6 +713,11 @@ function zone_number_refresh(){
 		el.html(zone.strength());
 		el.css({'font-size':'16px','text-align':'center','line-height':'45px'});
 	}
+	*/
+	zone_l.forEach(function(zone){
+		zone.element.html(zone.strength());
+		zone.element.css({'font-size':'16px','text-align':'center','line-height':'45px'});
+	})
 }
 function zone_side_refresh(){
 	zone_l.forEach(function(zone){
@@ -676,126 +735,171 @@ function isFriend(side_id){
 }
 
 
+function UI_init(){
+	//此函数用于完全UI重置，利用的是全局变量而不是参数。
+	//auto_resize();
+	map_el.empty();
+	//绘制区域与文字
+	zone_l.forEach(function(zone){
+		var els=draw_zone_snr(map_el,zone);
+		var zone_e=els[0];
+		var text1=els[1];
+		var text2=els[2];
+		zone.element=zone_e;
+		zone.element_text1=text1;
+		zone.element_text2=text2;
+		zone.x_el=zone.x*map_percent_x+x_transform;
+		zone.y_el=zone.y*map_percent_y+y_transform;
+		//新元素绑定实体
+		//zone_el_d[zone.id]=zone_e;
+		zone_e.click(zone_click);
+		zone_e.attr({'id':zone.id});
+	});
+	//绘制道路
+	link_l.forEach(function(link){
+		var in_zone=zone_d[link.in];
+		var out_zone=zone_d[link.out];
+		var x1,y1,x2,y2;
+		x1=in_zone.x_el+cellW/2;
+		y1=in_zone.y_el+cellH/2;
+		x2=out_zone.x_el+cellW/2;
+		y2=out_zone.y_el+cellH/2;
+		draw_line(map_el,x1,y1,x2,y2);
+	});
+	screen_update();
+}
 
+var leader_l,zone_l,link_l,side_l,zone_d,side_d,leader_d;
+function global_init(){
+	var big_dic=SNR_script;
+	leader_l=big_dic.people;
+	zone_l=big_dic.zone;
+	link_l=big_dic.link;
+	side_l=big_dic.side;
+	zone_d=id_dic_by_list(zone_l);
+	side_d=id_dic_by_list(side_l);
+	leader_d=id_dic_by_list(leader_l);
+	
+	player_side=side_l[0].id;
+	player_side_list=[player_side];
+}
+
+function enhance_init(){
+	for (var i=0;i<zone_l.length;i++){
+		var zone=zone_l[i];
+		zone.strengths={};
+		side_l.forEach(function(side){
+			zone.strengths[side.id]={0:0,1:0};//即有1移动力和有0移动力的单位数量的区别映射
+		})
+		//zone.strengths[side_d[zone.side].id][1]=int(random.random()*10);
+		zone.move_able=function(){//strength现在逻辑改为可战斗单位数量
+			return this.strengths[this.side][1];
+		};
+		zone.total_strength=function(side_id){
+			var s=0;
+			for (var i in this.strengths[side_id]){
+				s+=this.strengths[side_id][i];
+			}
+			return s;
+		}
+		zone.strength=function(){//strength现在逻辑改为可战斗单位数量
+			return this.total_strength(this.side);
+		};
+		zone.nei=[];//虽然有个link属性但那货不好用
+		zone.fighted=false;
+		zone.trans_to=zone.id;//默认不输送
+	}
+	//画线,注意CSS里的旋转是绕中心旋转,还对zone增加其nei属性
+	for (var i=0;i<link_l.length;i++){
+		var link=link_l[i]
+		var in_zone=zone_d[link.in];
+		var out_zone=zone_d[link.out];
+		in_zone.nei.push(link.out);
+		out_zone.nei.push(link.in);
+	}
+	for (var i=0;i<side_l.length;i++){
+		var side=side_l[i];
+		side.diplomacy={};
+		for(var j=0;j<side_l.length;j++){
+			side.diplomacy[side_l[j].id]=0;//0表示敌对，1表示友好，2表示是自己
+			side.diplomacy[side.id]=2;
+		}
+		side.is_friendly=function(zone_id){//这个是判定区域友好与	否的方法
+
+			return this.diplomacy[zone_d[zone_id].side] !==0 ;
+		}
+	}
+}
+
+function random_setup(){
+	zone_l.forEach(function(zone){
+		zone.strengths[side_d[zone.side].id][1]=int(random.random()*10);
+	})
+}
+function attr_setup(attr){
+	zone_l.forEach(function(zone){
+		zone.strengths[side_d[zone.side].id][1]=zone[attr]//int(random.random()*10);
+	})
+}
+
+var resize_percent=70;
+function auto_resize(){
+	var dl=[];
+	zone_l.forEach(function(zone1){
+		zone_l.forEach(function(zone2){
+			var dis=Math.sqrt(Math.pow((zone1.x-zone2.x),2)+Math.pow((zone1.y-zone2.y),2));
+			if (zone1.id!=zone2.id && dis>1){
+				dl.push(dis);
+			}
+		})
+	})
+	var min_dis=min(dl);
+	map_percent_x=resize_percent/min_dis;
+	map_percent_y=resize_percent/min_dis;
+	
+}
+function reload(dir){
+	//var scen_el=$('#SNRscript');
+	//scen_el.attr('src',dir);
+	$('<script src="'+dir+'"></script>').appendTo($('body'));
+	global_init();
+	enhance_init();
+	//auto_resize();
+	UI_init();
+	random_setup();
+	screen_update();
+}
 
 click_box=new Class_click_control();
 weight_choose=new Weight_choose();
 weight_assign=new Weight_assign();
 weight_choose_e=new Weight_choose_e();
 toolbox=new Toolbox();
+side_chooser=new Weight_side_chooser();
 
+weight_assign.hidden();
+weight_choose.hidden();
+weight_choose_e.hidden();//hidden是Weight的方法，jQuery是hide，Weight也有hide.
 
 
 var map_el = $('#map');
-//map_el.draggable();
-//map_el.css({width:'3000px',height:'1500px'});
-//map_el.dblclick(function(){boxShift('messageBox')});
 var cellW=50;
 var cellH=50;
 var x=3;
 var y=3;
-
-map_el.css({"background-color":"rgb(200,200,200)"});
-var zone_z_index=3;
-var line_z_index=zone_z_index-1;
-
-//这段没解耦好，要同时修改两个地方比较蛋疼。
-//big_dic=MiniWorldWar2_data;
-//big_dic=Europe1805_data;
-big_dic=SNR_script;
-
-leader_l=big_dic.people;
-zone_l=big_dic.zone;
-link_l=big_dic.link;
-side_l=big_dic.side;
-zone_d=id_dic_by_list(zone_l);
-side_d=id_dic_by_list(side_l);
-leader_d=id_dic_by_list(leader_l);
 //地图缩放常数
-map_percent_x=0.05;
-map_percent_y=0.05;
-//圆周率常数
-pi=Math.PI;
+map_percent_x=0.07;
+map_percent_y=0.07;
+x_transform=100;
+y_transform=0;
 
-//player_side='0005';
-player_side=side_l[0].id;
-//player_side_list=['0005'];
-player_side_list=[player_side];
 
-zone_el_d={};
-//画区域同时加强定义
-for (var i=0;i<zone_l.length;i++){
-	var zone=zone_l[i];
-	var els=draw_zone_snr(map_el,zone);
-	var zone_e=els[0];
-	var text1=els[1];
-	var text2=els[2];
-	zone.element=zone_e;
-	zone.element_text1=text1;
-	zone.element_text2=text2;
-	zone.x_el=zone.x*map_percent_x;
-	zone.y_el=zone.y*map_percent_y;
-	//zone.leader=[];
-	zone.strengths={};
-	side_l.forEach(function(side){
-		//zone.strengths[side.id]=0;
-		zone.strengths[side.id]={0:0,1:0};//即有1移动力和有0移动力的单位数量的区别映射
-	})
-	zone.strengths[side_d[zone.side].id][1]=int(random.random()*10);
-	zone.move_able=function(){//strength现在逻辑改为可战斗单位数量
-		return this.strengths[this.side][1];
-	};
-	zone.total_strength=function(side_id){
-		var s=0;
-		for (var i in this.strengths[side_id]){
-			s+=this.strengths[side_id][i];
-		}
-		return s;
-	}
-	zone.strength=function(){//strength现在逻辑改为可战斗单位数量
-		return this.total_strength(this.side);
-	};
-	zone.nei=[];//虽然有个link属性但那货不好用
-	zone_el_d[zone.id]=zone_e;
-	zone_e.click(zone_click);
-	//zone_e.click(click_box.click_zone);
-	zone_e.attr({'id':zone.id});
-	zone.fighted=false;
-	zone.trans_to=zone.id;//默认不输送
-}
-//画线,注意CSS里的旋转是绕中心旋转,还对zone增加其nei属性
-for (var i=0;i<link_l.length;i++){
-	//if (i>3) break;
-	var link=link_l[i]
-	var in_zone=zone_d[link.in];
-	var out_zone=zone_d[link.out];
-	var x1,y1,x2,y2;
-	x1=in_zone.x_el+cellW/2;
-	y1=in_zone.y_el+cellH/2;
-	x2=out_zone.x_el+cellW/2;
-	y2=out_zone.y_el+cellH/2;
-	draw_line(map_el,x1,y1,x2,y2);
-	//增加属性部分
-	in_zone.nei.push(link.out);
-	out_zone.nei.push(link.in);
+global_init();
+enhance_init();
+//auto_resize();
+UI_init();
+random_setup();
+focus_player();
 
-}
-for (var i=0;i<side_l.length;i++){
-	var side=side_l[i];
-	side.diplomacy={};
-	for (var j=0;j<side_l.length;j++){
-		side.diplomacy[side_l[j].id]=0;//0表示敌对，1表示友好，2表示是自己
-		side.diplomacy[side.id]=2;
-	}
-	side.is_friendly=function(zone_id){//这个是判定区域友好与否的方法
-		return this.diplomacy[zone_d[zone_id].side] !==0 ;
-	}
-}
-
-zone_color_reshresh();
-zone_number_refresh();
-
+screen_update();
 boxShift('mapBox');
-weight_assign.hidden();
-weight_choose.hidden();
-weight_choose_e.hidden();

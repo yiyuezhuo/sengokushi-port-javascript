@@ -6,8 +6,6 @@
   <link rel="stylesheet" href="jquery/jquery-ui.css">
   <script src="jquery/jquery.js"></script>
   <script src="jquery/jquery-ui.js"></script>
-  <script src="datatables/datatables.min.js"></script>
-  <link rel="stylesheet" href="datatables/datatables.min.css">
 
   <style>
   	.line
@@ -22,28 +20,28 @@
 </head>
 <body>
 
-<!-- <div id="header" style="z-index:8888;background-color: rgb(50, 50, 200);position: absolute;">打飞机hello</div> -->
 <div id='map' class='oneShow mapBox' style="z-index:0"></div>
 
-	<div id='assign' class='assign' style="z-index:10;position:absolute">
+<div id='assign' class='assign' style="z-index:10;position:absolute">
 		<p>
 			<label for="amount">number:</label>
 			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
 		</p>
 		<div id="slider-range"></div>
 		<a id="confirm">confirm</a>
-	</div>
-	<div id='choose' class='choose' style="z-index:10;position:absolute">
+</div>
+<div id='choose' class='choose' style="z-index:10;position:absolute">
 		<a id='assign_a'>assign</a><br>
 		<a id='transport_a'>transport</a>
-	</div>
-	<div id='choose_e' class='choose_e' style="z-index:10;position:absolute">
+</div>
+<div id='choose_e' class='choose_e' style="z-index:10;position:absolute">
 		<a id='battle_a'>fight!</a>
 		<a id='bliz_a'>bliz!</a>
-	</div>
+</div>
+
 	
 <div id='toolbox' style="z-index:20;position:fixed;background-color: rgb(220, 220, 220)">
-	<p>A Nice Game </p>
+	<p>A Strategy Game </p>
 	<p>  by yiyuezhuo</p>
 	<a id="next_turn_a"> Next Turn</a><br><br>
 	<a id="save_load_a">save_load</a><br>
@@ -55,28 +53,29 @@
 		<a id='load_a'>load</a><br><br>
 		<a id='fold_a'>fold</a>
 	</div>
-	<a id="tend_a">tend</a>
-	<!-- <img id='moe' src='1.jpg'> -->
+	<br>
+	<a id="tend_a">tend</a><br>
+	<div id="tend_div">
+		<a id="change_side_a">change side</a><br>
+		<a id="resize_a">resize</a><br>
+		<a id="scenario_chooser_a">scenario</a><br>
+		<div id="scenario_chooser_div">
+			Local select<br>
+			<input id='load_input' type="file" name="file" /><br>
+			<a id='scenario_chooser_load_local'>load</a><br><br>
+			<a id="scenario_chooser_fold_a"></a>
+		</div>
+		<div id='side_chooser' class='side_chooser' style='z-index:20'></div>
+		<a id="focus_a">focus</a><br>
+		<a href='http://yiyuezhuo.github.io/' target="_blank">about</a><br><br>
+		<a id="tend_fold_a">fold</a>
+	</div>
 </div>
 
-<!--
-<div id="messageBox" class='oneShow messageBox'>
-	This the message box!you can get some message in this!
-	<a  href="javascript:click_box.message_back()">back!</a><br>
-	<a  href="javascript:click_box.message_caught()">caught state!</a><br>
-	<a  href="javascript:click_box.next_turn()">next turn</a>
-</div>
--->
 
-<!--
-<script src="shengyingbattle.js"></script>
--->
-
-
-<script src="scenario/fantasy.js"></script>
+<script id='SNRscript' src="scenario/Europe1805.js"></script>
 <script src="AI.js"></script>
 <script src="logic.js"></script>
-<script src="save3.js"></script>
 
 </body>
 </html>
