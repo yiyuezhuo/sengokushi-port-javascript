@@ -352,9 +352,11 @@ function Weight_assign(){
 	this.range=0;
 	this.value_history=[];
 	var that=this;
+	this.slider=null;
 	this.activate=function(zone){
 		this.last_zone=zone;
 		this.range=zone.move_able();
+		/*
 		$( "#slider-range" ).slider({
 			  range: "max",
 			  min: 0,
@@ -366,11 +368,25 @@ function Weight_assign(){
 					//this.value_history.push(ui.value);
 			}
 		});
-		$( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+		*/
+		that.slider=slider($( "#slider-range" ),{
+			  range: "max",
+			  min: 0,
+			  max: that.range,
+			  value: 0,
+			  slide: function( event, ui ) {
+					$( "#amount" ).val( ui.value );
+					//this.value=ui.value;
+					//this.value_history.push(ui.value);
+			}
+		});
+		//$( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+		$( "#amount" ).val(that.value );
 		console.log('weight_assign activate end');
 	}
 	this.get_value=function(){
-		return $( "#slider-range" ).slider( "value" );
+		return that.slider.value;
+		//return $( "#slider-range" ).slider( "value" );
 		//return this.slide.slider("value");
 	};
 	var that=this;
