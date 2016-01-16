@@ -788,6 +788,7 @@ function UI_init(){
 var leader_l,zone_l,link_l,side_l,zone_d,side_d,leader_d;
 function global_init(){
 	var big_dic=SNR_script;
+	//console.log(big_dic.side);
 	leader_l=big_dic.people;
 	zone_l=big_dic.zone;
 	link_l=big_dic.link;
@@ -874,16 +875,69 @@ function auto_resize(){
 	map_percent_y=resize_percent/min_dis;
 	
 }
+function parseParam(){
+	var url=location.search; 
+	var Request = new Object(); 
+	if(url.indexOf("?")!=-1) { 
+		var str = url.substr(1) //去掉?号 
+		strs = str.split("&"); 
+	for(var i=0;i<strs.length;i++) { 
+		Request[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]); 
+	} 
+	} 
+	return Request;
+}
+function loadScript(newJS){
+		var scriptObj = document.createElement("script"); 
+		scriptObj.src=newJS;
+		document.getElementsByTagName("html")[0].appendChild(scriptObj);
+}
+/** 
+ * 串联加载指定的脚本
+ * 串联加载[异步]逐个加载，每个加载完成后加载下一个
+ * 全部加载完成后执行回调
+ * @param array|string 指定的脚本们
+ * @param function 成功后回调的函数
+ * @return array 所有生成的脚本元素对象数组
+ */
+
+function seriesLoadScripts(scripts,callback) {
+   if(typeof(scripts) != "object") var scripts = [scripts];
+   var HEAD = document.getElementsByTagName("head").item(0) || document.documentElement;
+   var s = new Array(), last = scripts.length - 1, recursiveLoad = function(i) {  //递归
+       s[i] = document.createElement("script");
+       s[i].setAttribute("type","text/javascript");
+       s[i].onload = s[i].onreadystatechange = function() { //Attach handlers for all browsers
+           if(!/*@cc_on!@*/0 || this.readyState == "loaded" || this.readyState == "complete") {
+               this.onload = this.onreadystatechange = null; this.parentNode.removeChild(this); 
+               if(i != last) recursiveLoad(i + 1); else if(typeof(callback) == "function") callback();
+           }
+       }
+       s[i].setAttribute("src",scripts[i]);
+       HEAD.appendChild(s[i]);
+   };
+   recursiveLoad(0);
+}
+
 function reload(dir){
 	//var scen_el=$('#SNRscript');
 	//scen_el.attr('src',dir);
-	$('<script src="'+dir+'"></script>').appendTo($('body'));
+	//$('<script src="'+dir+'"></script>').appendTo($('body'));
+	//var scen_el= document.getElementById("SNRscript");
+	//scen_el.src=dir;//貌似直接在那个位置改src并不会引起重新加载，jQeury和dom都不行。而创建新dom对于jQuery会出跨域错误，dom不会
+	//loadScript(dir);
+	seriesLoadScripts([dir],setup);
+}
+function setup(){
 	global_init();
 	enhance_init();
 	//auto_resize();
 	UI_init();
 	random_setup();
+	focus_player();
+
 	screen_update();
+	boxShift('mapBox');
 }
 
 click_box=new Class_click_control();
@@ -909,13 +963,11 @@ map_percent_y=0.07;
 x_transform=100;
 y_transform=0;
 
-
-global_init();
-enhance_init();
-//auto_resize();
-UI_init();
-random_setup();
-focus_player();
-
-screen_update();
-boxShift('mapBox');
+params=parseParam();
+if (params["scenario"]){
+	reload(params["scenario"]);
+}
+else{
+	setup();
+}
+//setup();
