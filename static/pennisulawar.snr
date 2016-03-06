@@ -1,0 +1,496 @@
+ScenarioVer : 11	// 僔僫儕僆Version
+
+MapFile : "spain.smp"
+Title : "半岛战争"
+MainMapKakudai : 0, 0, 640, 400
+StartYear	: 1812
+StartMonth	: 1
+HeiUnit		: 10
+ShiroDotSize	: 2
+ShiroHyourouMax	: 2000
+UchijiniKakuritsu	: 2
+SeppukuKakuritsu	: 0
+BushouHojuu	: NO
+JuuzokuJoukenHosei	: 5
+ShinjuuJoukenHosei	: 5
+DokuritsuJoukenHosei	: 5
+Kishuu	: NO
+Keiryaku	: YES
+DistanceLimit	: 5
+StandardAge	: 70
+MapMinWidth	: 600
+RoadCostBroad		: 2.0
+RoadCostNarrow		: 3.0
+RoadCostMountain	: 5.0
+RoadCostSea			: 1.0
+KouzanPicture			: NORMAL
+KouekisenPicture		: NORMAL
+KouekisenReturnPicture	: NORMAL
+GunsenPicture			: NORMAL
+GunsenCompletePicture	: NORMAL
+GunsenLargePicture		: NORMAL
+TeppouPicture			: NORMAL
+GunsenUnitPictureR		: NORMAL
+GunsenUnitPictureL		: NORMAL
+BGM	: "", ""
+Opening {
+}
+OpeningImg	: ""
+Ending {
+}
+EndingImg	: ""
+WordAssign {
+	DAIMYOUKE			:	"大名家"
+	ASHIGARUHEI			:	"步兵"
+	KIBAHEI				:	"骑兵"
+	TEPPOU				:	"大炮"
+	SHIRO				:	"城"
+	JOUSHU				:	"城主"
+	RAKUJOU				:	"落城"
+	KAIJOU				:	"开城"
+	SHIROFUSHIN			:	"修建城"
+	BUSHOU				:	"武将"
+	KOKUDAKA			:	"石高"
+	KOKU				:	"石"
+	KOUEKISEN			:	"交易船"
+	GUNSEN				:	"战船"
+	TEPPOU_KOUNYUU		:	"买进铁炮"
+	TEPPOU_SEISAN		:	"生产铁炮"
+	TEPPOU_HAIBI		:	"配置铁炮"
+	TEPPOU_SHAGEKI		:	"大炮轰击"
+	BC					:	"B.C."
+	ZENKOKU				:	"全国"
+	SHIRO_LEVEL1		:	"内堡"
+	SHIRO_LEVEL2		:	"外堡"
+	SHIRO_LEVEL3		:	"防御炮台"
+	SHIRO_LEVEL4		:	"星堡"
+	SHIRO_LEVEL5		:	"外防线"
+	SHIRO_LEVEL6		:	"从属堡"
+	SHIRO_LEVEL7		:	"外壕"
+	SHIRO_LEVEL8		:	"护城河"
+	SHIRO_LEVEL9		:	"支撑点"
+	SHIRO_LEVEL10		:	"天堑"
+	HYOUROU				:	"军粮"
+	ROUTOU				:	"家臣"
+	SEISHI				:	"世嗣"
+	TAISAN				:	"往南美殖民地逃亡"
+	CHOU				:	"支"
+	SEPPUKU				:	"切腹"
+	HOUROKUHIYA			:	"海军炮击"
+	GENPUKU				:	"成年"
+	SHOKEI				:	"处刑"
+	SHUKAIDOU			:	"主街道"
+	SHOUKAIDOU			:	"小街道"
+	SANRO				:	"山路"
+	SUIRO				:	"水路"
+	RIKURO				:	"陆路"
+	KAIKON				:	"新田开发"
+	RAKUICHI			:	"乐市乐座"
+	KOUZAN				:	"矿山"
+	KOUZAN_KAIHATSU		:	"矿山开发"
+	KEIZAI				:	"经济"
+	NOUHANKI			:	"农忙期"
+}
+KuniArea {
+	1					:	3,			0,		0,		495,	352
+}
+TeppouSoubiRitsu	:	1.00,			0.00,			1.00
+TeppouKouka	:	100,			100,			50,				50
+TeppouCost	:	100,		0.20,			10
+TeppouSeisan {
+}
+TeppouKounyuu {
+}
+TeppouKounyuuMonth {
+}
+Event {
+}
+EventDetail {
+}
+Daimyou {
+	D_0000				:	"英国",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0001				:	"法国",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0002				:	"葡萄牙",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0003				:	"西班牙王室",	NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0004				:	"西班牙游击队",	NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+}
+Doumei {
+	D_0000,					SHINJUU,	D_0002
+	D_0000,					SHINJUU,	D_0003
+	D_0000,					SHINJUU,	D_0004
+	D_0001,					SHUKUTEKI,	D_ALL
+}
+ShiroType {
+	ST_NORMAL		:	NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_RYUUKYUU		:	CHINA,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_CHINA		:	CHINA,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_EUROPE		:	EUROPE,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_GENDAI		:	GENDAI,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+}
+Shiro {
+	S_0043					:	"英国本土",		1,				0,		0,		5888,	8960,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0000,					""
+	S_0044					:	"葡萄牙殖民地",	1,				0,		0,		5248,	11264,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0045					:	"西班牙殖民地",	1,				0,		0,		4736,	13184,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0003,					""
+	S_0000					:	"里斯本",		1,				0,		0,		8704,	23424,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0001					:	"波尔图",		1,				0,		0,		9984,	15616,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0002					:	"拉克鲁尼亚",	1,				0,		0,		10752,	8192,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0003					:	"奥古耶多",		1,				0,		0,		19840,	4480,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0004					:	"毕而巴额",		1,				0,		0,		30592,	5888,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0005					:	"圣塞瓦斯安",	1,				0,		0,		44288,	5248,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0001,					""
+	S_0006					:	"法国本土",		1,				7,		7,		52736,	2688,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0001,					""
+	S_0007					:	"配皮尼路",		1,				0,		0,		57344,	7168,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0001,					""
+	S_0008					:	"巴塞罗那",		1,				0,		0,		58752,	12032,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0001,					""
+	S_0009					:	"瓦伦西亚",		1,				0,		0,		50304,	18304,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0010					:	"萌基利亚",		1,				0,		0,		50560,	28032,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0011					:	"穆尔西亚",		1,				0,		0,		46720,	30336,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0012					:	"阿梅利亚",		1,				0,		0,		44032,	37376,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0013					:	"马拉加",		1,				0,		0,		33408,	39040,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0014					:	"直布罗陀",		1,				10,		10,		25344,	42624,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0000,					""
+	S_0015					:	"塞维利亚",		1,				0,		0,		17536,	37248,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0016					:	"维尔瓦",		1,				0,		0,		10496,	36736,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0017					:	"法鲁",			1,				0,		0,		11776,	29312,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0018					:	"维斯卡",		1,				0,		0,		50304,	6528,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0001,					""
+	S_0019					:	"萨拉戈萨",		1,				0,		0,		52352,	11264,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0020					:	"阿尔瓦塞特",	1,				0,		0,		47616,	13952,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0021					:	"布尔格斯",		1,				0,		0,		44160,	9984,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0001,					""
+	S_0022					:	"巴发亚多利德",	1,				0,		0,		37504,	8704,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0023					:	"钢铁利亚",		1,				0,		0,		30464,	10112,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0024					:	"萨拉曼卡",		1,				0,		0,		22528,	9856,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0025					:	"瓜达",			1,				0,		0,		16256,	11264,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0026					:	"巴达霍斯",		1,				0,		0,		16896,	16640,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0027					:	"阿萨雷斯",		1,				0,		0,		25856,	16384,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0028					:	"马德里",		1,				1,		1,		35328,	15488,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0001,					""
+	S_0029					:	"瓜达啦哈",		1,				0,		0,		42112,	15232,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0030					:	"阿尔亚赛特",	1,				0,		0,		45312,	19968,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0031					:	"史塔特堡",		1,				0,		0,		47488,	24192,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0032					:	"哈恩",			1,				0,		0,		39936,	26112,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0033					:	"安坦阿尔",		1,				0,		0,		38144,	20864,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0034					:	"格兰纳达",		1,				0,		0,		36736,	32768,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0035					:	"西班利亚",		1,				0,		0,		28928,	34688,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0036					:	"雷恩堡",		1,				0,		0,		22144,	32512,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0037					:	"沙普堡",		1,				0,		0,		18816,	27520,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0038					:	"艾达吴",		1,				0,		0,		14336,	21888,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0002,					""
+	S_0039					:	"红婷堡",		1,				0,		0,		23168,	22016,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0040					:	"卡塞雷斯",		1,				0,		0,		29952,	20480,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0041					:	"二师兄堡",		1,				0,		0,		33536,	26368,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0004,					""
+	S_0042					:	"婉情堡",		1,				0,		0,		25856,	26752,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		50,		ST_NORMAL,	D_0000,					""
+}
+ShiroConnect {
+	S_0043,			S_0044,			SEA,			LINE
+	S_0043,			S_0045,			SEA,			ARC,			4147,	9651,	2969,	11033,	3302,	12364	
+	S_0044,			S_0045,			SEA,			LINE
+	S_0001,			S_0000,			NARROW,			LINE
+	S_0001,			S_0026,			NARROW,			LINE
+	S_0002,			S_0001,			NARROW,			LINE
+	S_0002,			S_0025,			NARROW,			LINE
+	S_0003,			S_0002,			NARROW,			LINE
+	S_0003,			S_0024,			NARROW,			LINE
+	S_0004,			S_0003,			NARROW,			LINE
+	S_0004,			S_0023,			NARROW,			LINE
+	S_0005,			S_0004,			MOUNTAIN,		LINE
+	S_0005,			S_0022,			MOUNTAIN,		LINE
+	S_0006,			S_0005,			BROAD,			LINE
+	S_0006,			S_0018,			BROAD,			LINE
+	S_0006,			S_0007,			BROAD,			LINE
+	S_0007,			S_0008,			NARROW,			LINE
+	S_0007,			S_0019,			MOUNTAIN,		LINE
+	S_0008,			S_0009,			NARROW,			LINE
+	S_0009,			S_0010,			NARROW,			LINE
+	S_0009,			S_0030,			BROAD,			LINE
+	S_0009,			S_0020,			MOUNTAIN,		LINE
+	S_0010,			S_0011,			BROAD,			LINE
+	S_0010,			S_0031,			BROAD,			LINE
+	S_0011,			S_0032,			NARROW,			LINE,			44992,	30400,	42688,	29760,	41280,	28160	
+	S_0011,			S_0012,			NARROW,			LINE
+	S_0012,			S_0013,			NARROW,			LINE
+	S_0013,			S_0014,			NARROW,			LINE
+	S_0014,			S_0043,			SEA,			ARC,			18048,	47104,	10624,	47104,	5376,	43136,	2432,	35584,	1920,	26752,	2816,	18944,	1024,	12672,	1920,	7424,	4992,	6016,	7424,	7808	
+	S_0015,			S_0014,			NARROW,			LINE
+	S_0016,			S_0015,			NARROW,			LINE,			17280,	37632	
+	S_0017,			S_0016,			BROAD,			LINE
+	S_0017,			S_0000,			BROAD,			LINE
+	S_0017,			S_0037,			NARROW,			LINE
+	S_0018,			S_0021,			BROAD,			LINE
+	S_0019,			S_0020,			MOUNTAIN,		LINE
+	S_0019,			S_0018,			NARROW,			LINE
+	S_0020,			S_0021,			NARROW,			LINE
+	S_0020,			S_0029,			NARROW,			LINE
+	S_0021,			S_0028,			BROAD,			LINE
+	S_0022,			S_0023,			NARROW,			LINE
+	S_0022,			S_0021,			MOUNTAIN,		LINE
+	S_0023,			S_0024,			NARROW,			LINE
+	S_0023,			S_0028,			MOUNTAIN,		LINE
+	S_0024,			S_0025,			NARROW,			LINE,			16640,	11200,	15872,	11136	
+	S_0024,			S_0027,			MOUNTAIN,		LINE
+	S_0025,			S_0026,			NARROW,			LINE
+	S_0026,			S_0038,			NARROW,			LINE,			14400,	21504	
+	S_0026,			S_0027,			NARROW,			LINE
+	S_0027,			S_0040,			MOUNTAIN,		LINE
+	S_0028,			S_0040,			BROAD,			LINE
+	S_0029,			S_0028,			NARROW,			LINE
+	S_0029,			S_0033,			MOUNTAIN,		LINE
+	S_0031,			S_0030,			BROAD,			LINE
+	S_0031,			S_0032,			MOUNTAIN,		LINE
+	S_0033,			S_0040,			NARROW,			LINE
+	S_0033,			S_0030,			NARROW,			LINE
+	S_0033,			S_0032,			NARROW,			LINE
+	S_0034,			S_0012,			NARROW,			LINE
+	S_0034,			S_0032,			NARROW,			LINE
+	S_0035,			S_0014,			BROAD,			LINE
+	S_0035,			S_0034,			NARROW,			LINE
+	S_0036,			S_0015,			NARROW,			LINE
+	S_0036,			S_0042,			MOUNTAIN,		LINE
+	S_0036,			S_0035,			MOUNTAIN,		LINE
+	S_0037,			S_0036,			MOUNTAIN,		LINE
+	S_0037,			S_0038,			MOUNTAIN,		LINE
+	S_0038,			S_0000,			BROAD,			LINE
+	S_0039,			S_0038,			BROAD,			LINE
+	S_0039,			S_0040,			NARROW,			LINE
+	S_0040,			S_0041,			BROAD,			LINE
+	S_0041,			S_0035,			BROAD,			LINE
+	S_0041,			S_0034,			NARROW,			LINE
+	S_0041,			S_0032,			MOUNTAIN,		LINE
+	S_0042,			S_0037,			MOUNTAIN,		LINE
+	S_0042,			S_0041,			MOUNTAIN,		LINE
+	S_0042,			S_0039,			MOUNTAIN,		LINE
+}
+TradingPartner {
+}
+TradingKuni {
+}
+TradingPort {
+}
+Bushou {
+	B_00000	:	"威灵顿",			1,	8,	9,	10,		3,		10,	3,	100,	100,	0,		1800,	1850,	UNKNOWN,	0,		D_0000,				0,		S_0000,				""
+	B_00001	:	"英国近卫军",		8,	1,	1,	2,		3,		3,	3,	0,		5000,	20,		1800,	1850,	UNKNOWN,	0,		D_0000,				4,		S_0000,				""
+	B_00002	:	"英国精选兵",		10,	1,	1,	1,		3,		3,	3,	0,		1000,	10,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00003	:	"英国列兵1师",		7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00006	:	"英国列兵2师",		7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00005	:	"英国列兵3师",		7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00009	:	"英国列兵5师",		7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00008	:	"英国列兵6师",		7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00007	:	"英国列兵7师",		7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00004	:	"英国列兵4师",		7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00010	:	"英国龙骑兵",		6,	1,	1,	1,		3,		3,	3,	1000,	0,		0,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00011	:	"英国骠骑兵",		6,	1,	1,	1,		3,		3,	3,	1500,	0,		0,		1800,	1850,	UNKNOWN,	0,		D_0000,				-1,		S_0000,				""
+	B_00012	:	"英国金权将军",		1,	1,	4,	4,		4,		3,	3,	50,		50,		0,		1800,	1850,	UNKNOWN,	0,		D_0000,				1,		S_0000,				""
+	B_00013	:	"英国金权将军",		1,	1,	4,	4,		4,		3,	3,	50,		50,		0,		1800,	1850,	UNKNOWN,	0,		D_0000,				2,		S_0000,				""
+	B_00014	:	"法国近卫军1师",	9,	1,	1,	1,		3,		3,	3,	0,		2000,	20,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00015	:	"法国近卫军2师",	9,	1,	1,	1,		3,		3,	3,	0,		2000,	20,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00017	:	"法国掷弹兵1师",	7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00016	:	"法国掷弹兵2师",	7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00018	:	"法国掷弹兵3师",	7,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00019	:	"法国列兵1师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00027	:	"法国列兵2师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00026	:	"法国列兵3师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00025	:	"法国列兵4师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00024	:	"法国列兵5师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0021,				""
+	B_00023	:	"法国列兵6师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0018,				""
+	B_00022	:	"法国列兵7师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0005,				""
+	B_00021	:	"法国列兵8师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0007,				""
+	B_00020	:	"法国列兵9师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00028	:	"法国列兵10师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00029	:	"法国列兵11师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00030	:	"法国列兵12师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00031	:	"法国列兵13师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00032	:	"法国列兵14师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00033	:	"法国列兵15师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00034	:	"法国列兵16师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00035	:	"法国列兵17师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00036	:	"法国列兵18师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00037	:	"法国列兵19师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00038	:	"法国列兵20师",		5,	1,	1,	1,		3,		3,	3,	0,		4000,	40,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0006,				""
+	B_00039	:	"缪拉",				1,	1,	5,	5,		0,		3,	3,	150,	0,		0,		1800,	1850,	UNKNOWN,	0,		D_0001,				4,		S_0028,				""
+	B_00040	:	"热罗姆",			1,	5,	1,	1,		3,		3,	3,	50,		300,	0,		1800,	1850,	UNKNOWN,	0,		D_0001,				0,		S_0028,				""
+	B_00041	:	"内伊",				1,	1,	4,	6,		3,		3,	3,	100,	100,	0,		1800,	1850,	UNKNOWN,	0,		D_0001,				3,		S_0008,				""
+	B_00042	:	"苏尔特",			1,	1,	5,	4,		3,		3,	3,	100,	100,	0,		1800,	1850,	UNKNOWN,	0,		D_0001,				2,		S_0005,				""
+	B_00043	:	"马塞纳",			1,	1,	7,	7,		3,		3,	3,	100,	100,	0,		1800,	1850,	UNKNOWN,	0,		D_0001,				1,		S_0006,				""
+	B_00044	:	"法国胸甲骑兵师",	7,	1,	1,	1,		3,		3,	3,	1500,	0,		0,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00045	:	"法国龙骑兵师",		5,	1,	1,	1,		3,		3,	3,	1500,	0,		0,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00046	:	"法国骠骑兵1师",	6,	1,	1,	1,		3,		3,	3,	1500,	0,		0,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00047	:	"法国骠骑兵2师",	5,	1,	1,	1,		3,		3,	3,	1500,	0,		0,		1800,	1850,	UNKNOWN,	0,		D_0001,				-1,		S_0028,				""
+	B_00048	:	"西班牙游击队1师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0023,				""
+	B_00049	:	"西班牙游击队2师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0004,				""
+	B_00050	:	"西班牙游击队3师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0003,				""
+	B_00051	:	"西班牙游击队4师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0024,				""
+	B_00052	:	"西班牙游击队5师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0025,				""
+	B_00053	:	"西班牙游击队6师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0002,				""
+	B_00054	:	"西班牙游击队7师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0026,				""
+	B_00055	:	"西班牙游击队8师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0027,				""
+	B_00056	:	"西班牙游击队9师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0039,				""
+	B_00057	:	"西班牙游击队10师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0040,				""
+	B_00058	:	"西班牙游击队11师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0042,				""
+	B_00059	:	"西班牙游击队12师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0041,				""
+	B_00060	:	"西班牙游击队13师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0033,				""
+	B_00061	:	"西班牙游击队14师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0029,				""
+	B_00062	:	"西班牙游击队15师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0020,				""
+	B_00063	:	"西班牙游击队16师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0019,				""
+	B_00064	:	"西班牙游击队17师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0009,				""
+	B_00065	:	"西班牙游击队18师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0031,				""
+	B_00066	:	"西班牙游击队19师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0010,				""
+	B_00067	:	"西班牙游击队20师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0011,				""
+	B_00068	:	"西班牙游击队21师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0032,				""
+	B_00069	:	"西班牙游击队22师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0034,				""
+	B_00070	:	"西班牙游击队23师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0012,				""
+	B_00071	:	"西班牙游击队24师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0013,				""
+	B_00072	:	"西班牙游击队25师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0035,				""
+	B_00073	:	"西班牙游击队26师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0036,				""
+	B_00074	:	"西班牙游击队27师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0040,				""
+	B_00075	:	"西班牙游击队28师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0029,				""
+	B_00076	:	"西班牙游击队29师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0033,				""
+	B_00077	:	"西班牙游击队30师",	1,	1,	1,	2,		3,		3,	3,	0,		5000,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				-1,		S_0009,				""
+	B_00078	:	"罗红婷",			1,	1,	6,	3,		3,		3,	3,	0,		200,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				1,		S_0029,				""
+	B_00079	:	"李婉情",			1,	1,	5,	4,		3,		3,	3,	0,		200,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				2,		S_0040,				""
+	B_00080	:	"甄姬",				1,	1,	4,	4,		0,		3,	3,	0,		200,	10,		1800,	1850,	UNKNOWN,	0,		D_0004,				3,		S_0009,				""
+	B_00081	:	"西班牙国王",		1,	6,	1,	1,		3,		3,	3,	500,	500,	100,	1800,	1850,	UNKNOWN,	0,		D_0003,				0,		S_0045,				""
+	B_00082	:	"葡萄牙国王",		1,	5,	1,	2,		3,		3,	3,	500,	500,	100,	1800,	1850,	UNKNOWN,	0,		D_0002,				0,		S_0044,				""
+	B_00083	:	"西班牙共和议会",	1,	7,	1,	2,		3,		3,	3,	100,	500,	0,		1800,	1850,	UNKNOWN,	0,		D_0004,				0,		S_0003,				""
+	B_00084	:	"葡萄牙列兵1师",	4,	1,	1,	1,		3,		3,	3,	0,		3000,	30,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00085	:	"葡萄牙列兵2师",	4,	1,	1,	2,		3,		3,	3,	0,		3000,	10,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00086	:	"葡萄牙列兵3师",	4,	1,	1,	2,		3,		3,	3,	0,		3000,	10,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00087	:	"葡萄牙列兵4师",	4,	1,	1,	2,		3,		3,	3,	0,		3000,	10,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00088	:	"葡萄牙列兵5师",	4,	1,	1,	2,		3,		3,	3,	0,		3000,	10,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00089	:	"葡萄牙列兵6师",	4,	1,	1,	2,		3,		3,	3,	0,		3000,	10,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00090	:	"葡萄牙列兵7师",	4,	1,	1,	2,		3,		3,	3,	0,		3000,	10,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00091	:	"葡萄牙列兵8师",	4,	1,	1,	2,		3,		3,	3,	0,		3000,	10,		1800,	1850,	UNKNOWN,	0,		D_0002,				-1,		S_0001,				""
+	B_00092	:	"歇絮",				1,	1,	6,	7,		3,		3,	3,	100,	100,	10,		1800,	1850,	UNKNOWN,	0,		D_0001,				1,		S_0005,				""
+}
+ConditionalEvent {
+	CE_0000 {
+		Title		: "收入保持"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+		}
+		Message {
+		}
+		Happening {
+			HAPPENING_DAIMYOU_SHIKIN, D_0000, NONE, NONE, NONE, NONE, NONE, "1000000", ""
+			HAPPENING_DAIMYOU_SHIKIN, D_0004, NONE, NONE, NONE, NONE, NONE, "1000000", ""
+			HAPPENING_DAIMYOU_SHIKIN, D_0002, NONE, NONE, NONE, NONE, NONE, "1000000", ""
+			HAPPENING_DAIMYOU_SHIKIN, D_0003, NONE, NONE, NONE, NONE, NONE, "1000000", ""
+			HAPPENING_DAIMYOU_SHIKIN, D_0001, NONE, NONE, NONE, NONE, NONE, "1000000", ""
+		}
+	}
+	CE_0001 {
+		Title		: "外交保持"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+		}
+		Message {
+		}
+		Happening {
+			HAPPENING_SHINJUU, D_0000, D_0002, NONE, NONE, NONE, NONE, "", ""
+			HAPPENING_SHINJUU, D_0000, D_0003, NONE, NONE, NONE, NONE, "", ""
+			HAPPENING_SHUKUTEKI_ALL, D_0001, NONE, NONE, NONE, NONE, NONE, "", ""
+		}
+	}
+	CE_0002 {
+		Title		: "补充兵力"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONTITION_BUSHOU_SHOZOKU, D_0000, NONE, NONE, B_00000, "", ""
+		}
+		Message {
+		}
+		Happening {
+			HAPPENING_BUSHOU_ASHIGARU_PLUS, NONE, NONE, NONE, NONE, B_00000, NONE, "10", ""
+			HAPPENING_BUSHOU_KIBA_PLUS, NONE, NONE, NONE, NONE, B_00000, NONE, "10", ""
+		}
+	}
+	CE_0004 {
+		Title		: "不可靠的游击队"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_LARGE_EQUAL, NONE, NONE, NONE, NONE, "#Random", "0.7"
+			CONDITION_EQUAL, NONE, NONE, NONE, NONE, "command", "1"
+		}
+		Message {
+			"游击队拒绝接受指挥"
+		}
+		Happening {
+			HAPPENING_JUUZOKU, D_0000, D_0004, NONE, NONE, NONE, NONE, "", ""
+			HAPPENING_DAINYUU, NONE, NONE, NONE, NONE, NONE, NONE, "command", "0"
+		}
+	}
+	CE_0003 {
+		Title		: "可靠的游击队"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_EQUAL, NONE, NONE, NONE, NONE, "command", "0"
+			CONDITION_LARGE_EQUAL, NONE, NONE, NONE, NONE, "#Random", "0.3"
+		}
+		Message {
+			"游击队接受指挥！"
+		}
+		Happening {
+			HAPPENING_SHINJUU, D_0000, D_0004, NONE, NONE, NONE, NONE, "", ""
+			HAPPENING_DAINYUU, NONE, NONE, NONE, NONE, NONE, NONE, "command", "1"
+		}
+	}
+	CE_0005 {
+		Title		: "初始化"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: ONCE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+		}
+		Message {
+		}
+		Happening {
+			HAPPENING_DAINYUU, NONE, NONE, NONE, NONE, NONE, NONE, "command", "1"
+		}
+	}
+}
+ColorPallet {
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+}
+Label {
+}

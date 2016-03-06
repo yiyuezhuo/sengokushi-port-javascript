@@ -1,31 +1,64 @@
 # sengokushi-port-javascript
-Sengokushi(戦国史) is a great Historical Simulation Game in PC.This is project port it to javascript.
+Sengokushi(戦国史) is a great Historical Simulation Game in PC. This goal of the project is port it to web browser.
 
-在线游戏（GItHub page,由于不明原因可能要很长时间才有反应，之前会显示不能显示页面）
-http://yiyuezhuo.github.io/games/project3/index.html
+<a href='http://yiyuezhuo.github.io/games/sengokushi/project3/laucher.html'>Online game(GitHub page)</a>
 
-这个项目视图将战国史移植到javascript上去，战国史有着众所周知的“简洁”以及众多信息量很大的剧本，这个项目最初是想
-把战国史的剧本移植到民国无双上（都是点对点驱动，很相近），不过没人关注，snr_parser.py就是转换成民国无双信息的脚本，
-现在那个转民国无双部分删除了，增加了转成JSON/javascript的功能后整合进这个项目。
+If you click above link,you will enter a scenario launcher to select a js scenario to start game.
 
-[他们官方](http://www.max.hi-ho.ne.jp/asaka/ "Title")。
+Notice, left toolbox text can click to activate something even it looks it's pure text.
 
-文件结构：
-snr_parser.py是提取战国史剧本信息的python脚本，其输出为JSON格式。
+## snr_parser.py 
 
-project1和project3各是一个实现，project1代码更乱（基本之前没有javascript基础）但更贴近战国史本意，是将领驱动的。
+Sengokushi scenario file (`*.snr`) parser written in Python.
 
-project3是RISK风格的，代码稍微好看一点，但是我懂还是很乱。。只是懒得重构。
+### Usage
 
-project1可以双击进菜单选下一回合，project3要到控制行输next_turn()。试了一下移动端的表现，发现稍作修改貌似就能
-正常运行了。
+transform a `*.snr` file to `*.js` file
 
-2015/11/28更新
-修改了了project3，增加了每回合自动移动设定减少繁琐的操作，不过现在感觉变成路径规划游戏了。另外把上传错误的pick2.py脚本换成snr_parser.py。现在这个脚本能解析更多战国史剧本了，碰到一些错误现在改成直接删除那个项而不是报错，因为project3基本不需要那些经常出错的项。另外很想吐槽效率，仅仅到了官方默认剧本这一级跑一回合就要那么长时间了，这还没引入什么复杂的AI。
+	$ python snr_picker.py trans scenario.snr obj.js
 
-2015/11/29更新
-增强了AI，原来的执行函数还留着，现在的各函数是以前的“2版”。现在AI会有意调兵力到前线，而且如果进攻会导致自己控制的地方丢失或攻过去又被攻回来就不会进攻。如果有威胁就会撤退。但是没有增援防御的意识，这个东西不好那么直接的和上面的合成。
-第二次更新，修正了AI的错误。不过现在有一个单线问题，即至少要有两倍兵力才会发起进攻，因为会防备实际上正好已被消灭的敌方兵力（某种意义倒不是毫无意义，可以减小伤亡）。现在AI有点精了。。不过全局规划方面问题还是不行。另外写这文档时候突然想起来忘了写transport的保存了。。
+## ch_to_english.py
 
-2015/12/3更新
-增加动态修改控制方，根据最小距离动态重置地图显示（终于明白战国史干吗要分国采用不同的显示比例了。。这样做其实不好），以及自动对焦到到当前使用方的一个地区上。虽然改变不大，但代码结构改变很大。scenario还没启用，准备使用分加载剧本与网上直接连接剧本两种，因为后者用到前者会出跨域错误，另一个就是AI的一个微妙的BUG还没开始调试，虽然对了这些改进的代码重构已经完成了。
+For some reason, I only can get Chinese or Japanese `*.snr` file. So I write parser face on chinese to point to point map,
+but I also write the auto-translate script to translate Chinese text in scenario to English.It use baidu translate service,
+it's machine translate so you will find even "jiataiji" on "Carthage".  
+
+### Usage
+
+translate a single `*.js` file to `*.js` file
+
+	python ch_to_english.py input.js output.js
+	
+translate all `*.js` file in a path
+
+	python ch_to_english.py -a project3/scenario
+	
+## Project1
+
+Project1 is my first JavaScript project, I even don't know forEach beforn writing it. So the code is ugly and I can't tolerate
+finally and to start to develop Project3.
+
+However Project1 is come close to Sengokushi,it is leader-based. You controll some leader,who have some attribute,include 
+infantry,cavalry,leadership etc.
+
+## Project3
+
+Project3 is RISK-style game. 
+
+<img src="static/preview.png">
+
+## Scenario List
+
+You can get so many scenario that are include many style and age,as Star war,Khan,Roma,Napolean,the cival war,WI,WII,etc...
+
+This repo have these scenario:
+
+* `Europe1805` its source is a WI scenario,I changed to it.
+* `fantasy` a small scenario to test this project.
+* `guanfang` Sengokushi office scenario
+* `guanyuan` a battle in Japanese in 1600
+* `micro` a test scenario
+* `MiniWorldWar2` as the name
+* `moshou` a Warcraft III scenario
+* `Roma` a Roma scenario
+* `zhanguoce` a old China period scenario 

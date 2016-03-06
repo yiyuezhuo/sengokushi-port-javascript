@@ -10,6 +10,7 @@ Created on Thu Jul 16 23:02:52 2015
 
 #import networkx as nx
 import json
+import sys
 
 class ParseErrorDel(Exception):
 	def __init__(self,value):
@@ -350,12 +351,34 @@ def is_list(obj):
     return type(obj)==type([])
 #下面是ROC剧本对应的类,这些类对应一个xnl元素。必须能转换成文本的xml元素
 
+def trans(fname1,fname2):
+    snr=Snr_parser(unicode(fname1))
+    snr.to_js(fname2)
         
 if __name__=='__main__':
     #snr3=Snr_parser('MiniWorldWar2.snr',country_pure={'ENGLAND':'0101'})
+    if len(sys.argv)>=2:
+        if sys.argv[1]=='trans':
+            if len(sys.argv)>=3:
+                fname1=sys.argv[2]
+            else:
+                fname1='input.snr'
+            if len(sys.argv)>=4:
+                fname2=sys.argv[3]
+            else:
+                fname2='output.js'
+            trans(fname1,fname2)
+            print fname1,'->',fname2
+        elif sys.argv[1]=='help':
+            print 'Example usage'
+            print '$ python snr_picker.py trans scenario.snr obj.js'
+        else:
+            print '$ python snr_picker.py help for help doc'
+    '''
     s=raw_input('Please input the file name you want to transform:')
     s=unicode(s)
     snr=Snr_parser(s,country_pure={'ENGLAND':'0101'})
-    ss=raw_input('load sucess!please give a name as javascript file to import:')
+    ss=raw_input('load sucess!please give a name as javascript file to export:')
     snr.to_js(ss)
     raw_input('OK! please press any key to continue.')
+    '''

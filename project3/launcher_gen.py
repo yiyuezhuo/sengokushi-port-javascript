@@ -17,14 +17,14 @@ tag_list=['<a href="'+href['s']+'"></a>' for href in href_list]
 
 #render_template('laucher_template.html',href_list=href_list)
 #env = Environment(loader=PackageLoader('yourapplication', 'templates'))
-f=open('laucher_template.html','r')
+f=open('launcher_template.html','r')
 temps=f.read()
 f.close()
 temp=Template(temps)
 content=temp.render(href_list=href_list)
 print content
 def dump(content):
-    f=open("laucher.html",'w')
+    f=open("launcher.html",'w')
     f.write(content)
     f.close()
 dump(content)

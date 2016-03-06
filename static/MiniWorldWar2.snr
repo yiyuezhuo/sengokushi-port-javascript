@@ -1,0 +1,544 @@
+ScenarioVer : 11	// 僔僫儕僆Version
+
+MapFile : "miniworld2.3dm"
+Title : "Mini WorldWar II"
+MainMapKakudai : 0, 0, 640, 400
+StartYear	: 1939
+StartMonth	: 6
+HeiUnit		: 1
+ShiroDotSize	: 2
+ShiroHyourouMax	: 2000
+UchijiniKakuritsu	: 10
+SeppukuKakuritsu	: 10
+BushouHojuu	: NO
+JuuzokuJoukenHosei	: 5
+ShinjuuJoukenHosei	: 5
+DokuritsuJoukenHosei	: 5
+Kishuu	: YES
+Keiryaku	: YES
+DistanceLimit	: 5
+StandardAge	: 100
+MapMinWidth	: 600
+RoadCostBroad		: 6.0
+RoadCostNarrow		: 6.0
+RoadCostMountain	: 6.0
+RoadCostSea			: 6.0
+KouzanPicture			: NORMAL
+KouekisenPicture		: NORMAL
+KouekisenReturnPicture	: NORMAL
+GunsenPicture			: NORMAL
+GunsenCompletePicture	: NORMAL
+GunsenLargePicture		: NORMAL
+TeppouPicture			: NORMAL
+GunsenUnitPictureR		: NORMAL
+GunsenUnitPictureL		: NORMAL
+BGM	: "", ""
+Opening {
+}
+OpeningImg	: ""
+Ending {
+}
+EndingImg	: ""
+WordAssign {
+	DAIMYOUKE			:	"国家"
+	ASHIGARUHEI			:	"组织度"
+	KIBAHEI				:	"冲击力"
+	TEPPOU				:	"火力"
+	SHIRO				:	"城"
+	JOUSHU				:	"城主"
+	RAKUJOU				:	"落城"
+	KAIJOU				:	"开城"
+	SHIROFUSHIN			:	"修建城"
+	BUSHOU				:	"单位"
+	KOKUDAKA			:	"石高"
+	KOKU				:	"石"
+	KOUEKISEN			:	"交易船"
+	GUNSEN				:	"战船"
+	TEPPOU_KOUNYUU		:	"进口军火"
+	TEPPOU_SEISAN		:	"生成军火"
+	TEPPOU_HAIBI		:	"配置军火"
+	TEPPOU_SHAGEKI		:	"火力压制"
+	BC					:	"B.C."
+	ZENKOKU				:	"全国"
+	SHIRO_LEVEL1		:	"本丸"
+	SHIRO_LEVEL2		:	"二之丸"
+	SHIRO_LEVEL3		:	"三之丸"
+	SHIRO_LEVEL4		:	"西之丸"
+	SHIRO_LEVEL5		:	"北之丸"
+	SHIRO_LEVEL6		:	"东之丸"
+	SHIRO_LEVEL7		:	"南之丸"
+	SHIRO_LEVEL8		:	"外壕"
+	SHIRO_LEVEL9		:	"西出丸"
+	SHIRO_LEVEL10		:	"东出丸"
+	HYOUROU				:	"军粮"
+	ROUTOU				:	"家臣"
+	SEISHI				:	"世嗣"
+	TAISAN				:	"往虾夷内陆深处逃散了"
+	CHOU				:	"支"
+	SEPPUKU				:	"切腹"
+	HOUROKUHIYA			:	"焙烙火矢攻击"
+	GENPUKU				:	"成年"
+	SHOKEI				:	"处刑"
+	SHUKAIDOU			:	"主街道"
+	SHOUKAIDOU			:	"小街道"
+	SANRO				:	"山路"
+	SUIRO				:	"水路"
+	RIKURO				:	"陆路"
+	KAIKON				:	"新田开发"
+	RAKUICHI			:	"乐市乐座"
+	KOUZAN				:	"矿山"
+	KOUZAN_KAIHATSU		:	"矿山开发"
+	KEIZAI				:	"经济"
+	NOUHANKI			:	"农忙期"
+}
+KuniArea {
+	C1					:	3,			0,		0,		639,	375
+}
+TeppouSoubiRitsu	:	0.00,			0.00,			0.00
+TeppouKouka	:	10,				10,				10,				10
+TeppouCost	:	100,		0.20,			10
+TeppouSeisan {
+}
+TeppouKounyuu {
+}
+TeppouKounyuuMonth {
+}
+Event {
+}
+EventDetail {
+}
+Daimyou {
+	D_0000				:	"美国",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0001				:	"英国",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0002				:	"法国",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0003				:	"德国",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0004				:	"苏联",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0005				:	"中华民国",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0006				:	"中国共产党",	NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0007				:	"荷兰",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0008				:	"波兰",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0009				:	"西班牙",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0010				:	"瑞典",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0011				:	"芬兰",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0012				:	"澳大利亚",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0013				:	"新西兰",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0014				:	"爱尔兰",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0015				:	"南美",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0016				:	"意大利",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0017				:	"南斯拉夫",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0018				:	"土耳其",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0019				:	"日本",			NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+	D_0020				:	"加拿大",		NORMAL,		0,			0,				-1,						10,					3,				YES,	NORMAL,		""
+}
+Doumei {
+	D_0000,					FUSEN,		D_0001
+	D_0000,					FUSEN,		D_0002
+	D_0004,					FUSEN,		D_0019
+	D_0000,					FUSEN,		D_0004
+	D_0003,					SHINJUU,	D_0016
+	D_0003,					FUSEN,		D_0018
+	D_0005,					JUUZOKU,	D_0006
+	D_0012,					FUSEN,		D_0013
+	D_0003,					SHUKUTEKI,	D_0008
+	D_0003,					SHUKUTEKI,	D_0001
+	D_0003,					SHUKUTEKI,	D_0002
+	D_0019,					SHUKUTEKI,	D_0005
+	D_0004,					FUSEN,		D_0005
+	D_0005,					FUSEN,		D_0001
+}
+ShiroType {
+	ST_NORMAL		:	NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_RYUUKYUU		:	CHINA,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_CHINA		:	CHINA,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_EUROPE		:	EUROPE,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+	ST_GENDAI		:	GENDAI,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			NORMAL,			0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	-10,-10,10,	10,	0,	0,	&+
+20,30
+}
+Shiro {
+	S_0000					:	"英国",			C1,				0,		0,		2432,	6784,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0001					:	"爱尔兰",		C1,				0,		0,		640,	4864,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0014,					""
+	S_0002					:	"意大利",		C1,				0,		0,		12160,	13056,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0016,					""
+	S_0003					:	"德国",			C1,				0,		0,		11136,	7680,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0003,					""
+	S_0004					:	"南斯拉夫",		C1,				0,		0,		13952,	9088,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0017,					""
+	S_0005					:	"法国",			C1,				0,		0,		7296,	8832,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0002,					""
+	S_0006					:	"西班牙",		C1,				0,		0,		4736,	13056,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0009,					""
+	S_0007					:	"瑞典",			C1,				0,		0,		13056,	1280,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0010,					""
+	S_0008					:	"芬兰",			C1,				0,		0,		17408,	1920,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0011,					""
+	S_0009					:	"波兰",			C1,				0,		0,		16768,	7040,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0008,					""
+	S_0010					:	"斯摩棱斯克",	C1,				0,		0,		20864,	5376,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0004,					""
+	S_0011					:	"土耳其",		C1,				0,		0,		18816,	13824,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0018,					""
+	S_0012					:	"利比亚",		C1,				0,		0,		12416,	19456,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0016,					""
+	S_0013					:	"埃及",			C1,				0,		0,		16768,	21120,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0014					:	"波斯",			C1,				0,		0,		20736,	17536,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0015					:	"突尼斯",		C1,				0,		0,		7040,	18944,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0002,					""
+	S_0016					:	"阿尔及利亚",	C1,				0,		0,		3456,	20224,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0002,					""
+	S_0017					:	"大西洋",		C1,				0,		0,		896,	16896,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0018					:	"非洲",			C1,				0,		0,		9088,	24832,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0019					:	"非洲1",		C1,				0,		0,		14720,	31488,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0020					:	"非洲2",		C1,				0,		0,		17408,	25984,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0021					:	"非洲3",		C1,				0,		0,		12928,	40448,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0022					:	"南非",			C1,				0,		0,		14336,	44544,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0023					:	"澳大利亚",		C1,				0,		0,		49408,	44928,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0012,					""
+	S_0024					:	"北澳大利亚",	C1,				0,		0,		46208,	36864,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0012,					""
+	S_0025					:	"新西兰",		C1,				0,		0,		55680,	44800,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0013,					""
+	S_0026					:	"南海",			C1,				0,		0,		47360,	30848,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0007,					""
+	S_0027					:	"新加坡",		C1,				0,		0,		35456,	30336,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0028					:	"南海2",		C1,				0,		0,		37888,	25216,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0007,					""
+	S_0029					:	"南海3",		C1,				0,		0,		41856,	28032,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0030					:	"印度",			C1,				0,		0,		28928,	23296,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0001,					""
+	S_0031					:	"重庆",			C1,				0,		0,		34816,	18944,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0005,					""
+	S_0032					:	"江西",			C1,				0,		0,		39424,	20224,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0005,					""
+	S_0053					:	"延安",			C1,				0,		0,		37888,	14976,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0006,					""
+	S_0054					:	"上海",			C1,				0,		0,		42112,	16384,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0019,					""
+	S_0033					:	"满洲",			C1,				0,		0,		43392,	11904,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0019,					""
+	S_0034					:	"日本",			C1,				0,		0,		50176,	15872,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0019,					""
+	S_0035					:	"关东",			C1,				0,		0,		48000,	9216,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0019,					""
+	S_0036					:	"西伯利亚",		C1,				0,		0,		55680,	2560,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0004,					""
+	S_0037					:	"西伯利亚2",	C1,				0,		0,		44416,	3072,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0004,					""
+	S_0038					:	"蒙古",			C1,				0,		0,		35968,	8448,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0004,					""
+	S_0039					:	"亚洲中部",		C1,				0,		0,		30720,	14080,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0004,					""
+	S_0040					:	"巴库",			C1,				0,		0,		25216,	9472,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0004,					""
+	S_0041					:	"莫斯科",		C1,				0,		0,		30464,	4096,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0004,					""
+	S_0042					:	"加拿大",		C1,				0,		0,		71424,	4480,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0020,					""
+	S_0043					:	"西海岸",		C1,				0,		0,		77824,	15488,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0044					:	"南美",			C1,				0,		0,		80512,	29568,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0015,					""
+	S_0045					:	"太平洋",		C1,				0,		0,		68480,	22400,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0046					:	"太平洋1",		C1,				0,		0,		69760,	31616,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0047					:	"太平洋2",		C1,				0,		0,		63744,	28928,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0048					:	"太平洋3",		C1,				0,		0,		64896,	36992,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0049					:	"太平洋4",		C1,				0,		0,		55680,	27648,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0050					:	"太平洋5",		C1,				0,		0,		59392,	22016,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0051					:	"太平洋6",		C1,				0,		0,		63232,	16256,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0000,					""
+	S_0052					:	"台湾",			C1,				0,		0,		45568,	21376,	0,		0,		0,		0,		0,		0,		NO,		0,		0,		NO,		20,		ST_CHINA,	D_0019,					""
+}
+ShiroConnect {
+	S_0000,			S_0005,			BROAD,			LINE
+	S_0000,			S_0001,			BROAD,			LINE
+	S_0000,			S_0017,			BROAD,			LINE
+	S_0002,			S_0003,			BROAD,			LINE
+	S_0002,			S_0012,			BROAD,			LINE
+	S_0003,			S_0004,			BROAD,			LINE
+	S_0003,			S_0009,			BROAD,			LINE
+	S_0003,			S_0007,			BROAD,			LINE
+	S_0004,			S_0009,			BROAD,			LINE
+	S_0005,			S_0003,			BROAD,			LINE
+	S_0005,			S_0002,			BROAD,			LINE,			11776,	12416	
+	S_0006,			S_0005,			BROAD,			LINE
+	S_0006,			S_0017,			BROAD,			LINE
+	S_0007,			S_0000,			BROAD,			LINE
+	S_0008,			S_0007,			BROAD,			LINE
+	S_0009,			S_0010,			BROAD,			LINE
+	S_0010,			S_0008,			BROAD,			LINE,			19328,	1792	
+	S_0010,			S_0040,			BROAD,			LINE
+	S_0010,			S_0041,			BROAD,			LINE
+	S_0012,			S_0015,			BROAD,			LINE
+	S_0013,			S_0012,			BROAD,			LINE
+	S_0013,			S_0020,			BROAD,			LINE
+	S_0014,			S_0011,			BROAD,			LINE
+	S_0014,			S_0013,			BROAD,			LINE
+	S_0014,			S_0030,			BROAD,			LINE,			24960,	17792	
+	S_0016,			S_0015,			BROAD,			LINE
+	S_0017,			S_0016,			BROAD,			LINE
+	S_0018,			S_0020,			BROAD,			LINE
+	S_0019,			S_0021,			BROAD,			LINE
+	S_0020,			S_0019,			BROAD,			LINE
+	S_0022,			S_0021,			BROAD,			LINE
+	S_0022,			S_0027,			BROAD,			LINE,			29824,	38656	
+	S_0023,			S_0025,			BROAD,			LINE
+	S_0024,			S_0025,			BROAD,			LINE,			52096,	34560,	54272,	39296,	55168,	43904	
+	S_0024,			S_0023,			BROAD,			LINE
+	S_0025,			S_0048,			BROAD,			LINE
+	S_0026,			S_0024,			BROAD,			LINE,			45568,	37120	
+	S_0027,			S_0028,			BROAD,			LINE
+	S_0027,			S_0026,			BROAD,			LINE
+	S_0028,			S_0052,			BROAD,			LINE
+	S_0028,			S_0030,			BROAD,			LINE
+	S_0028,			S_0029,			BROAD,			LINE
+	S_0029,			S_0026,			BROAD,			LINE
+	S_0031,			S_0032,			BROAD,			LINE
+	S_0031,			S_0030,			BROAD,			LINE
+	S_0031,			S_0039,			BROAD,			LINE
+	S_0053,			S_0031,			BROAD,			LINE
+	S_0054,			S_0052,			BROAD,			LINE
+	S_0054,			S_0032,			BROAD,			LINE
+	S_0054,			S_0053,			BROAD,			LINE
+	S_0033,			S_0054,			BROAD,			LINE
+	S_0033,			S_0034,			BROAD,			LINE
+	S_0033,			S_0053,			BROAD,			LINE
+	S_0034,			S_0052,			BROAD,			LINE
+	S_0034,			S_0035,			BROAD,			LINE
+	S_0034,			S_0054,			BROAD,			LINE
+	S_0034,			S_0050,			BROAD,			LINE
+	S_0034,			S_0049,			BROAD,			LINE
+	S_0035,			S_0033,			BROAD,			LINE
+	S_0036,			S_0037,			BROAD,			LINE
+	S_0037,			S_0035,			BROAD,			LINE,			45312,	7808	
+	S_0038,			S_0037,			BROAD,			LINE,			44416,	2432	
+	S_0039,			S_0040,			BROAD,			LINE
+	S_0040,			S_0041,			BROAD,			LINE
+	S_0040,			S_0011,			BROAD,			LINE
+	S_0041,			S_0038,			BROAD,			LINE
+	S_0042,			S_0043,			BROAD,			LINE
+	S_0042,			S_0051,			BROAD,			LINE
+	S_0043,			S_0044,			BROAD,			LINE,			81024,	24960	
+	S_0043,			S_0045,			BROAD,			LINE
+	S_0044,			S_0046,			BROAD,			LINE
+	S_0045,			S_0046,			BROAD,			LINE
+	S_0045,			S_0047,			BROAD,			LINE
+	S_0047,			S_0050,			BROAD,			LINE
+	S_0047,			S_0046,			BROAD,			LINE
+	S_0047,			S_0048,			BROAD,			LINE
+	S_0047,			S_0049,			BROAD,			LINE
+	S_0048,			S_0046,			BROAD,			LINE
+	S_0049,			S_0048,			BROAD,			LINE,			64256,	36736	
+	S_0049,			S_0026,			BROAD,			LINE
+	S_0050,			S_0049,			BROAD,			LINE
+	S_0050,			S_0045,			BROAD,			LINE
+	S_0051,			S_0043,			BROAD,			LINE
+	S_0051,			S_0050,			BROAD,			LINE
+	S_0052,			S_0032,			BROAD,			LINE
+}
+TradingPartner {
+}
+TradingKuni {
+}
+TradingPort {
+}
+Bushou {
+	B_00000	:	"皇家近卫军",		5,	5,	5,	5,		5,		10,	10,	1000,	2000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0001,				0,		S_0000,				""
+	B_00001	:	"亚洲步枪兵",		4,	5,	5,	5,		5,		10,	10,	1000,	2000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0001,				1,		S_0027,				""
+	B_00002	:	"北非老鼠",			6,	5,	5,	5,		5,		10,	10,	1500,	1000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0001,				2,		S_0013,				""
+	B_00003	:	"党卫军",			10,	5,	5,	10,		5,		10,	10,	2000,	3000,	1500,	1900*,	3000,	UNKNOWN,	0,		D_0003,				0,		S_0003,				""
+	B_00004	:	"国防军",			5,	5,	5,	5,		5,		10,	10,	2000,	2500,	1000,	1900*,	3000,	UNKNOWN,	0,		D_0003,				1,		S_0003,				""
+	B_00005	:	"国民冲锋队",		1,	5,	5,	1,		5,		10,	10,	0,		5000,	0,		1900*,	3000,	UNKNOWN,	0,		D_0003,				2,		S_0003,				""
+	B_00006	:	"马其诺军团",		3,	5,	5,	5,		5,		10,	10,	500,	2000,	1000,	1900*,	3000,	UNKNOWN,	0,		D_0002,				0,		S_0005,				""
+	B_00007	:	"弗朗哥卫队",		2,	5,	5,	5,		5,		10,	10,	500,	2000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0009,				0,		S_0006,				""
+	B_00008	:	"白色死神",			8,	5,	5,	5,		5,		10,	10,	1500,	2000,	1500,	1900*,	3000,	UNKNOWN,	0,		D_0011,				0,		S_0008,				""
+	B_00009	:	"十字军",			4,	5,	5,	5,		5,		10,	10,	500,	2000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0010,				0,		S_0007,				""
+	B_00010	:	"意大利享乐军",		1,	5,	5,	5,		5,		10,	10,	500,	2000,	1000,	1900*,	3000,	UNKNOWN,	0,		D_0016,				0,		S_0012,				""
+	B_00011	:	"穆斯林头巾军",		2,	5,	5,	5,		5,		10,	10,	2000,	0,		0,		1900*,	3000,	UNKNOWN,	0,		D_0018,				0,		S_0011,				""
+	B_00012	:	"波兰翼骑兵",		6,	5,	5,	5,		5,		10,	10,	2000,	1000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0008,				0,		S_0009,				""
+	B_00013	:	"苏联民兵",			4,	5,	5,	5,		5,		10,	10,	1000,	4000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0004,				2,		S_0010,				""
+	B_00014	:	"苏联游击队",		4,	5,	5,	5,		5,		10,	10,	500,	2000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0004,				1,		S_0040,				""
+	B_00015	:	"苏联政委",			8,	5,	5,	5,		5,		10,	10,	2000,	5000,	5000,	1900*,	3000,	UNKNOWN,	0,		D_0004,				0,		S_0041,				""
+	B_00016	:	"苏联亚洲军团",		6,	5,	5,	5,		5,		10,	10,	1500,	2000,	1500,	1900*,	3000,	UNKNOWN,	0,		D_0004,				3,		S_0037,				""
+	B_00017	:	"荷兰流亡舰队",		2,	5,	5,	5,		5,		10,	10,	500,	1000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0007,				0,		S_0028,				""
+	B_00018	:	"袋鼠军",			3,	5,	5,	5,		5,		10,	10,	1000,	1000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0012,				0,		S_0023,				""
+	B_00019	:	"新西兰军",			3,	5,	5,	5,		5,		10,	10,	1000,	1000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0013,				0,		S_0025,				""
+	B_00020	:	"人民军",			9,	5,	5,	5,		5,		10,	10,	2000,	3000,	0,		1900*,	3000,	UNKNOWN,	0,		D_0006,				0,		S_0053,				""
+	B_00021	:	"土匪双枪军",		9,	5,	5,	5,		5,		10,	10,	2000,	3000,	100,	1900*,	3000,	UNKNOWN,	0,		D_0006,				1,		S_0053,				""
+	B_00022	:	"军阀军",			3,	5,	5,	5,		5,		10,	10,	500,	4000,	400,	1900*,	3000,	UNKNOWN,	0,		D_0005,				1,		S_0031,				""
+	B_00023	:	"中央军",			4,	5,	5,	5,		5,		10,	10,	1000,	3000,	800,	1900*,	3000,	UNKNOWN,	0,		D_0005,				0,		S_0032,				""
+	B_00024	:	"日升军",			8,	5,	5,	5,		5,		10,	10,	2000,	4000,	1000,	1900*,	3000,	UNKNOWN,	0,		D_0019,				0,		S_0054,				""
+	B_00025	:	"关东军",			8,	5,	5,	5,		5,		10,	10,	2000,	2000,	1000,	1900*,	3000,	UNKNOWN,	0,		D_0019,				1,		S_0035,				""
+	B_00026	:	"机动舰队",			8,	5,	5,	5,		5,		10,	10,	1000,	3000,	1500,	1900*,	3000,	UNKNOWN,	0,		D_0019,				2,		S_0034,				""
+	B_00027	:	"神风敢死队",		10,	5,	5,	0,		5,		10,	10,	2000,	0,		0,		1900*,	3000,	UNKNOWN,	0,		D_0019,				3,		S_0034,				""
+	B_00028	:	"电影演员陆战队",	6,	5,	5,	5,		5,		10,	10,	1500,	3000,	2500,	1900*,	3000,	UNKNOWN,	0,		D_0000,				0,		S_0043,				""
+	B_00029	:	"第一太平洋舰队",	7,	5,	5,	5,		5,		10,	10,	1000,	3000,	1500,	1900*,	3000,	UNKNOWN,	0,		D_0000,				1,		S_0043,				""
+	B_00030	:	"第二太平洋舰队",	7,	5,	5,	5,		5,		10,	10,	1000,	3000,	1500,	1900*,	3000,	UNKNOWN,	0,		D_0000,				2,		S_0043,				""
+	B_00031	:	"独裁者围观团",		2,	5,	5,	5,		5,		10,	10,	1000,	1000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0015,				0,		S_0044,				""
+	B_00032	:	"外籍军团",			5,	5,	5,	5,		5,		10,	10,	1000,	1000,	500,	1900*,	3000,	UNKNOWN,	0,		D_0002,				2,		S_0015,				""
+}
+ConditionalEvent {
+	CE_0000 {
+		Title		: "无限金钱"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: DAIMYOU
+		LoopVariable	: "DM"
+		Condition {
+		}
+		Message {
+		}
+		Happening {
+			HAPPENING_DAINYUU, NONE, NONE, NONE, NONE, NONE, NONE, "Daimyou1", "DM"
+			HAPPENING_DAIMYOU_SHIKIN, VARIABLE, NONE, NONE, NONE, NONE, NONE, "1000000", ""
+		}
+	}
+	CE_0001 {
+		Title		: "补充兵力"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: BUSHOU
+		LoopVariable	: "LI"
+		Condition {
+		}
+		Message {
+		}
+		Happening {
+			HAPPENING_DAINYUU, NONE, NONE, NONE, NONE, NONE, NONE, "Bushou1", "LI"
+			HAPPENING_BUSHOU_ASHIGARU_PLUS, NONE, NONE, NONE, NONE, VARIABLE, NONE, "#武将步兵数(Bushou1)*0.03", ""
+			HAPPENING_BUSHOU_KIBA_PLUS, NONE, NONE, NONE, NONE, VARIABLE, NONE, "#武将骑兵数(Bushou1)*0.02", ""
+			HAPPENING_BUSHOU_TEPPOU_PLUS, NONE, NONE, NONE, NONE, VARIABLE, NONE, "#武将铁炮数(Bushou1)*0.01", ""
+			HAPPENING_BUSHOU_ASHIGARU_PLUS, NONE, NONE, NONE, NONE, VARIABLE, NONE, "10", ""
+			HAPPENING_BUSHOU_KIBA_PLUS, NONE, NONE, NONE, NONE, VARIABLE, NONE, "5", ""
+			HAPPENING_BUSHOU_TEPPOU_PLUS, NONE, NONE, NONE, NONE, VARIABLE, NONE, "3", ""
+		}
+	}
+	CE_0002 {
+		Title		: "太平洋战争"
+		PeriodStart	: 1941, 12
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: ONCE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_NOT_TEKITAI, D_0019, D_0000, NONE, NONE, "", ""
+		}
+		Message {
+			"日本对美国宣战！"
+		}
+		Happening {
+			HAPPENING_SHUKUTEKI, D_0019, D_0000, NONE, NONE, NONE, NONE, "", ""
+		}
+	}
+	CE_0003 {
+		Title		: "巴巴罗萨"
+		PeriodStart	: 1941, 6
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: ONCE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_NOT_TEKITAI, D_0003, D_0004, NONE, NONE, "", ""
+		}
+		Message {
+			"巴巴罗萨计划实施！"
+		}
+		Happening {
+			HAPPENING_SHUKUTEKI, D_0003, D_0004, NONE, NONE, NONE, NONE, "", ""
+		}
+	}
+	CE_0004 {
+		Title		: "核打击"
+		PeriodStart	: 1945, 9
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: ONCE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_TEKITAI, D_0019, D_0000, NONE, NONE, "", ""
+		}
+		Message {
+			"顽抗的日本遭到核打击！"
+		}
+		Happening {
+			HAPPENING_NOT_SHUKUTEKI, D_0019, D_0000, NONE, NONE, NONE, NONE, "", ""
+			HAPPENING_SHINJUU, D_0000, D_0019, NONE, NONE, NONE, NONE, "", ""
+			HAPPENING_DAIMYOU_ASHIGARU_PLUS, D_0019, NONE, NONE, NONE, NONE, NONE, "-3000", ""
+		}
+	}
+	CE_0005 {
+		Title		: "苏联入侵"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: ONCE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_DAIMYOU_METSUBOU, D_0003, NONE, NONE, NONE, "", ""
+		}
+		Message {
+			"苏联收拾完苏联开始收拾日本了"
+		}
+		Happening {
+			HAPPENING_SHUKUTEKI, D_0004, D_0019, NONE, NONE, NONE, NONE, "", ""
+		}
+	}
+	CE_0006 {
+		Title		: "铁幕降临"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: ONCE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_DAIMYOU_METSUBOU, D_0003, NONE, NONE, NONE, "", ""
+			CONDITION_DAIMYOU_METSUBOU, D_0019, NONE, NONE, NONE, "", ""
+			CONDITION_DAIMYOU_METSUBOU, D_0016, NONE, NONE, NONE, "", ""
+		}
+		Message {
+			"轴心国已经灭亡，自由民主与极权主义的终极对决开始了。"
+		}
+		Happening {
+			HAPPENING_SHUKUTEKI, D_0000, D_0004, NONE, NONE, NONE, NONE, "", ""
+			HAPPENING_SHUKUTEKI, D_0001, D_0004, NONE, NONE, NONE, NONE, "", ""
+		}
+	}
+	CE_0007 {
+		Title		: "中国内战"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: ONCE
+		SubRoutine	: NO
+		LoopType	: NONE
+		LoopVariable	: ""
+		Condition {
+			CONDITION_DOKURITSU, D_0006, NONE, NONE, NONE, "", ""
+			CONDITION_DOKURITSU, D_0005, NONE, NONE, NONE, "", ""
+			CONDITION_DAIMYOU_METSUBOU, D_0019, NONE, NONE, NONE, "", ""
+		}
+		Message {
+			"日本被击退，吃饱了没事干的中国人又开始内斗了。"
+		}
+		Happening {
+			HAPPENING_SHUKUTEKI, D_0006, D_0005, NONE, NONE, NONE, NONE, "", ""
+		}
+	}
+	CE_0008 {
+		Title		: "外交危机"
+		PeriodStart	: NONE
+		PeriodEnd	: NONE
+		Logic		: AND
+		RepeatType	: REPEATABLE
+		SubRoutine	: NO
+		LoopType	: DAIMYOU
+		LoopVariable	: "DMD"
+		Condition {
+			CONDITION_LARGE_EQUAL, NONE, NONE, NONE, NONE, "#城数(DMD)", "4"
+			CONDITION_LARGE_EQUAL, NONE, NONE, NONE, NONE, "#Random", "0.999"
+		}
+		Message {
+			"%大名DMD%陷入外交危机！所有国家都与其敌对！"
+		}
+		Happening {
+			HAPPENING_DAINYUU, NONE, NONE, NONE, NONE, NONE, NONE, "Daimyou1", "DMD"
+			HAPPENING_SHUKUTEKI_ALL, VARIABLE, NONE, NONE, NONE, NONE, NONE, "", ""
+		}
+	}
+}
+ColorPallet {
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+	255,255,255,	""
+}
+Label {
+}
